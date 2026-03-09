@@ -1,10 +1,10 @@
-println("Hello World");
+println("Hey World");
 //
-print("Hello");
+print("\nHey");
 print("World");
 //
-print("Hello");
+print("\n\nHey");
 print("\tWorld");
 //
-print("Hello");
+print("\n\nHey");
 print("\nWorld");
