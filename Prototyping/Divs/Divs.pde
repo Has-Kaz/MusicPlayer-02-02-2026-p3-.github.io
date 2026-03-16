@@ -3,7 +3,7 @@
 //
 println(displayWidth, displayHeight);
 //fullScreen();
-size(360, 750);
+size(470, 1000);
 int appWidth = width; //displayWidth
 int appHeight = height; //displayHeight
 //
