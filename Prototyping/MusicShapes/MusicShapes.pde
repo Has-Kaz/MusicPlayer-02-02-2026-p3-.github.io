@@ -1,5 +1,16 @@
-/*
-*/
+/* DIVs 2D Rectangles, Assignment
+ - Recreate the music symbols you want in the single box
+ - This creates a library of variables and 2D Shapes
+ 
+ - In the future
+ - An array will demonstrate a simple alpha-numeric naming system
+ - Developer will create a legend for index #
+ - Developer will program each section
+ - Sections may be overlapping
+ 
+ ** Note: no sections will be overlapping here
+ 
+ */
 //
 println(displayWidth, displayHeight);
 fullScreen();
