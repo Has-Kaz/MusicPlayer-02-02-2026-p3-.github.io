@@ -26,9 +26,15 @@ void setup() {
   String musicFolder = "Music";
   String soundEffectsFolder = "Sound Effects";
   String dependanciesFolder = "Dependencies";
+  //
+  String[] songName = new String[numberOfSongs];
+  songName[0] = "Cycles";
+  songName[1] = "Eureka";
+  songName[2] = "Ghost_Walk";
+  
+  
+  
   String songName1 = "Eureka";
-  String songName2 = "Cycles";
-  String songName3 = "Ghost_Walk";
   String soundEffect1 = "Car_Door_Closing";
   String fileExtension_mp3 = ".mp3";
   //
