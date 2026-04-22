@@ -6,7 +6,7 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
 Minim minim; 
-int numberOfSongs = 1;
+int numberOfSongs = 3;
 int numberOfSoundEffect = 1;
 AudioPlayer[] playList = new AudioPlayer[ numberOfSongs ];
 AudioPlayer[] soundEffects = new AudioPlayer[ numberOfSoundEffect ];
