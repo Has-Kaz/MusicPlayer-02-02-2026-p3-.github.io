@@ -111,7 +111,7 @@ void setup() {
   float fontSize2 = messageDIV_Height;
   float fontSize3 = quitHeight;
   PFont font; //Font Varaible Name, able to have more than one Font
-  String TimesNewRomanPSMT = "TimesNewRomanPSMT"; //Spelling of the Font Matters, see PFont.list() v Create Font above
+  String TimesNewRomanPSMT = "Times New Roman"; //Spelling of the Font Matters, see PFont.list() v Create Font above
   font = createFont(TimesNewRomanPSMT, fontSize1);
   //
   //Drawing Text
@@ -173,7 +173,7 @@ void mousePressed() {
    .pause()
    .rewind()
    .skip()
-   .unmute()
+   .unmute();
    .mute()
    -
    Lesson Music Button Features based on single, double, and spamming taps
@@ -264,7 +264,28 @@ void mousePressed() {
       //song[currentSong].play();
     }
   }
-  //if ( key=='B' || key=='b' ) ; // Previous, Back //Students to finish
+  if ( key=='B' || key=='b' ) {
+    if ( playList[currentSong].isPlaying() ) {
+      playList[currentSong].pause();
+      playList[currentSong].rewind();
+      //
+      if ( currentSong==0 ) {
+        currentSong = numberOfSongs-1;
+      } else {
+        currentSong--;
+      }
+      playList[currentSong].play();
+    } else {
+      //
+      playList[currentSong].rewind();
+      //
+      if ( currentSong==0 ) {
+        currentSong = numberOfSongs-1;
+      } else {
+        currentSong--;
+      }
+    }
+  }
   //
   if ( key=='Y' || key=='y' ) currentSong = int(random(numberOfSongs)); //random(0, numberOfSongs)
   //
@@ -391,8 +412,30 @@ void keyPressed() {
       //song[currentSong].play();
     }
   }
-  //if ( key=='B' || key=='b' ) ; // Previous, Back //Students to finish
-  //
+  if ( key=='B' || key=='b' ) {
+    if ( playList[currentSong].isPlaying() ) {
+      playList[currentSong].pause();
+      playList[currentSong].rewind();
+      //
+      if ( currentSong==numberOfSongs-1 ) {
+        currentSong = 0;
+      } else {
+        currentSong--;
+      }
+      playList[currentSong].play();
+    } else {
+      //
+      playList[currentSong].rewind();
+      //
+      if ( currentSong==numberOfSongs-1 ) {
+        currentSong = 0;
+      } else {
+        currentSong--;
+      }
+      // NEXT will not automatically play the song
+      //song[currentSong].play();
+    }
+  }
   if ( key=='Y' || key=='y' ) currentSong = int(random(numberOfSongs)); //random(0, numberOfSongs)
   //
   //if ( key=='S' || key=='s' ) ; // Shuffle - PLAY (Random)
