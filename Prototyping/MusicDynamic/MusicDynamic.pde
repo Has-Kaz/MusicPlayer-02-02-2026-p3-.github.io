@@ -240,30 +240,20 @@ void mousePressed() {
   if ( key==CODED || keyCode==ESC ) exit(); // QUIT //UP
   if ( key=='Q' || key=='q' ) exit(); // QUIT
   //
-  if ( key=='N' || key=='n' ) { // NEXT //See .txt for starter hint
-    if ( playList[currentSong].isPlaying() ) {
+  if ( key =='N' || key=='n' ) { // NEXT 
+    if ( playList[currentSong].isPlaying()) {
       playList[currentSong].pause();
       playList[currentSong].rewind();
+    }
       //
-      if ( currentSong==numberOfSongs-1 ) {
+      if ( currentSong==numberOfSongs - 1 ) {
         currentSong = 0;
       } else {
         currentSong++;
       }
       playList[currentSong].play();
-    } else {
-      //
-      playList[currentSong].rewind();
-      //
-      if ( currentSong==numberOfSongs-1 ) {
-        currentSong = 0;
-      } else {
-        currentSong++;
       }
-      // NEXT will not automatically play the song
-      //song[currentSong].play();
     }
-  }
   if ( key=='B' || key=='b' ) {
     if ( playList[currentSong].isPlaying() ) {
       playList[currentSong].pause();
@@ -275,17 +265,8 @@ void mousePressed() {
         currentSong--;
       }
       playList[currentSong].play();
-    } else {
-      //
-      playList[currentSong].rewind();
-      //
-      if ( currentSong==0 ) {
-        currentSong = numberOfSongs-1;
-      } else {
-        currentSong--;
       }
     }
-  }
   //
   if ( key=='Y' || key=='y' ) currentSong = int(random(numberOfSongs)); //random(0, numberOfSongs)
   //
