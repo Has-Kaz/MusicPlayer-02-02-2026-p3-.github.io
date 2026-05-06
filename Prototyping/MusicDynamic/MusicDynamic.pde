@@ -275,7 +275,16 @@ void mousePressed() {
   //Caution: random() is used very often
   //Question: how does truncating decimals affect returning random() floats
   /*
-  if ( key=='' || key=='' ) ; // Play-Pause-STOP //Advanced, beyond single buttons
+  if ( key=='P' || key=='p' ); // Play-Pause-STOP //Advanced, beyond single buttons
+  if ( playList[currentSong].isPlaying() ) {
+  playList[currentSong].pause();
+  } else {
+   if ( playList[currentSong].isPause() ) {
+   playlist[currentSong].stop()}
+  } else {
+  if ( playlist[currentSong].isStop() ) {
+  playlist[currentSong].play
+  }
    - need to have basic GUI complete first
    */
   //
