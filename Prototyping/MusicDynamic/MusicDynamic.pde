@@ -240,54 +240,54 @@ void mousePressed() {
   if ( key==CODED || keyCode==ESC ) exit(); // QUIT //UP
   if ( key=='Q' || key=='q' ) exit(); // QUIT
   //
-  if ( key =='N' || key=='n' ) { // NEXT 
+  if ( key =='N' || key=='n' ) { // NEXT
     if ( playList[currentSong].isPlaying()) {
       playList[currentSong].pause();
       playList[currentSong].rewind();
     }
-      //
-      if ( currentSong==numberOfSongs - 1 ) {
-        currentSong = 0;
-      } else {
-        currentSong++;
-      }
-      playList[currentSong].play();
-      }
+    //
+    if ( currentSong==numberOfSongs - 1 ) {
+      currentSong = 0;
+    } else {
+      currentSong++;
     }
-  if ( key=='B' || key=='b' ) {
-    if ( playList[currentSong].isPlaying() ) {
-      playList[currentSong].pause();
-      playList[currentSong].rewind();
-      //
-      if ( currentSong==0 ) {
-        currentSong = numberOfSongs-1;
-      } else {
-        currentSong--;
-      }
-      playList[currentSong].play();
-      }
-    }
-  //
-  if ( key=='Y' || key=='y' ) currentSong = int(random(numberOfSongs)); //random(0, numberOfSongs)
-  //
-  //if ( key=='S' || key=='s' ) ; // Shuffle - PLAY (Random)
-  //Note: will randomize the currentSong number
-  //Caution: random() is used very often
-  //Question: how does truncating decimals affect returning random() floats
-  /*
-  if ( key=='P' || key=='p' ); // Play-Pause-STOP //Advanced, beyond single buttons
-  if ( playList[currentSong].isPlaying() ) {
-  playList[currentSong].pause();
-  } else {
-   if ( playList[currentSong].isPause() ) {
-   playlist[currentSong].stop()}
-  } else {
-  if ( playlist[currentSong].isStop() ) {
-  playlist[currentSong].play
+    playList[currentSong].play();
   }
-   - need to have basic GUI complete first
-   */
-  //
+}
+if ( key=='B' || key=='b' ) {
+  if ( playList[currentSong].isPlaying() ) {
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+    //
+    if ( currentSong==0 ) {
+      currentSong = numberOfSongs-1;
+    } else {
+      currentSong--;
+    }
+    playList[currentSong].play();
+  }
+}
+//
+if ( key=='Y' || key=='y' ) currentSong = int(random(numberOfSongs)); //random(0, numberOfSongs)
+//
+//if ( key=='S' || key=='s' ) ; // Shuffle - PLAY (Random)
+//Note: will randomize the currentSong number
+//Caution: random() is used very often
+//Question: how does truncating decimals affect returning random() floats
+/*
+  if ( key=='P' || key=='p' ); // Play-Pause-STOP //Advanced, beyond single buttons
+ if ( playList[currentSong].isPlaying() ) {
+ playList[currentSong].pause();
+ } else {
+ if ( playList[currentSong].isPause() ) {
+ playlist[currentSong].stop()}
+ } else {
+ if ( playlist[currentSong].isStop() ) {
+ playlist[currentSong].play
+ }
+ - need to have basic GUI complete first
+ */
+//
 }//End Mouse Pressed
 //
 void keyPressed() {
