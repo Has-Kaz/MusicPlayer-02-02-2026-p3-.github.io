@@ -13,7 +13,6 @@ int paperHeight = 280;
 //
 void draw() {
   background(255); // Clear the screen with a white background
-
 float RecordBoxDivX = appWidth * 20 / paperWidth;
 float RecordBoxDivY = appHeight * 10 / paperHeight;
 float RecordBoxDivWidth = appWidth * 80 / paperWidth;
@@ -149,7 +148,6 @@ rect( PlaylistDivX, PlaylistDivY, PlaylistDivWidth, PlaylistDivHeight );
   rect(LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight);
   drawCustomShape(LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight);
 }
-
 void drawCustomShape(float x, float y, float w, float h) {
   pushMatrix(); // Save the current transformation matrix
   translate(x, y); // Move to the top-left corner of the Loop rectangle
