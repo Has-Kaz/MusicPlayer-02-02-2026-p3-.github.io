@@ -11,8 +11,6 @@ int appHeight = height; //displayHeight
 int paperWidth = 120;
 int paperHeight = 280;
 //
-void draw() {
-  background(255); // Clear the screen with a white background
 float RecordBoxDivX = appWidth * 20 / paperWidth;
 float RecordBoxDivY = appHeight * 10 / paperHeight;
 float RecordBoxDivWidth = appWidth * 80 / paperWidth;
@@ -143,28 +141,55 @@ rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitle
 rect( HomeDivX, HomeDivY, HomeDivWidth, HomeDivHeight );
 rect( PlaylistDivX, PlaylistDivY, PlaylistDivWidth, PlaylistDivHeight );
 //
+void draw() {
+  background(255); // Clear the screen with a white background
+
   // Draw the Loop rectangle
-  fill(255, 255, 255); // White
+  fill(200, 200, 255); // Light blue color
   rect(LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight);
-  drawCustomShape(LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight);
+
+  // Draw the loop symbol inside the LoopDiv
+  drawLoopSymbol(LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight);
 }
-void drawCustomShape(float x, float y, float w, float h) {
+
+void drawLoopSymbol(float x, float y, float w, float h) {
   pushMatrix(); // Save the current transformation matrix
-  translate(x, y); // Move to the top-left corner of the Loop rectangle
-  scale(w / 100.0, h / 100.0); // Scale the shape to fit inside the rectangle
-  // Define the custom shape (example: a star)
-  beginShape();
-  vertex(50, 0);   // Top point
-  vertex(61, 35);  // Top-right
-  vertex(98, 35);  // Far-right
-  vertex(68, 57);  // Bottom-right
-  vertex(79, 91);  // Bottom point
-  vertex(50, 70);  // Center-bottom
-  vertex(21, 91);  // Bottom-left
-  vertex(32, 57);  // Bottom-left inner
-  vertex(2, 35);   // Far-left
-  vertex(39, 35);  // Top-left
-  endShape(CLOSE);
+  translate(x + w / 2, y + h / 2); // Move to the center of the LoopDiv
+
+  float buffer = min(w, h) * 0.2; // Buffer from the edges
+  float radius = (min(w, h) - buffer) / 2; // Radius of the circle
+
+  stroke(0); // Black outline
+  strokeWeight(2);
+  noFill();
+
+  // Draw the first arc (top-right to bottom-left)
+  arc(0, 0, radius * 2, radius * 2, -PI / 4, 3 * PI / 4);
+
+  // Draw the arrowhead for the first arc
+  float arrowSize = radius * 0.2;
+  float arrowAngle1 = 3 * PI / 4; // Angle at the end of the first arc
+  float arrowX1 = cos(arrowAngle1) * radius;
+  float arrowY1 = sin(arrowAngle1) * radius;
+  fill(0);
+  triangle(
+    arrowX1, arrowY1,
+    arrowX1 - arrowSize, arrowY1 - arrowSize / 2,
+    arrowX1 - arrowSize, arrowY1 + arrowSize / 2
+  );
+
+  // Draw the second arc (bottom-left to top-right)
+  arc(0, 0, radius * 2, radius * 2, 3 * PI / 4, 7 * PI / 4);
+
+  // Draw the arrowhead for the second arc
+  float arrowAngle2 = -PI / 4; // Angle at the end of the second arc
+  float arrowX2 = cos(arrowAngle2) * radius;
+  float arrowY2 = sin(arrowAngle2) * radius;
+  triangle(
+    arrowX2, arrowY2,
+    arrowX2 + arrowSize, arrowY2 - arrowSize / 2,
+    arrowX2 + arrowSize, arrowY2 + arrowSize / 2
+  );
 
   popMatrix(); // Restore the previous transformation matrix
 }
