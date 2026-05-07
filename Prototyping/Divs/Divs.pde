@@ -10,6 +10,10 @@ int appHeight = height; //displayHeight
 //
 int paperWidth = 120;
 int paperHeight = 280;
+//
+void draw() {
+  background(255); // Clear the screen with a white background
+
 float RecordBoxDivX = appWidth * 20 / paperWidth;
 float RecordBoxDivY = appHeight * 10 / paperHeight;
 float RecordBoxDivWidth = appWidth * 80 / paperWidth;
@@ -140,3 +144,29 @@ rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitle
 rect( HomeDivX, HomeDivY, HomeDivWidth, HomeDivHeight );
 rect( PlaylistDivX, PlaylistDivY, PlaylistDivWidth, PlaylistDivHeight );
 //
+  // Draw the Loop rectangle
+  fill(255, 255, 255); // White
+  rect(LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight);
+  drawCustomShape(LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight);
+}
+
+void drawCustomShape(float x, float y, float w, float h) {
+  pushMatrix(); // Save the current transformation matrix
+  translate(x, y); // Move to the top-left corner of the Loop rectangle
+  scale(w / 100.0, h / 100.0); // Scale the shape to fit inside the rectangle
+  // Define the custom shape (example: a star)
+  beginShape();
+  vertex(50, 0);   // Top point
+  vertex(61, 35);  // Top-right
+  vertex(98, 35);  // Far-right
+  vertex(68, 57);  // Bottom-right
+  vertex(79, 91);  // Bottom point
+  vertex(50, 70);  // Center-bottom
+  vertex(21, 91);  // Bottom-left
+  vertex(32, 57);  // Bottom-left inner
+  vertex(2, 35);   // Far-left
+  vertex(39, 35);  // Top-left
+  endShape(CLOSE);
+
+  popMatrix(); // Restore the previous transformation matrix
+}
