@@ -162,10 +162,11 @@ void draw() {
 }//End Draw
 //
 void mousePressed() {
-
+  //2D Music Symbol Changes: Hoverover, activation. Boolean from MousePressed
 }//End mousePressed
 //
 void keyPressed() {
+  //2D Music Symbol Changes: 
 
 }//End keyPressed
 //
