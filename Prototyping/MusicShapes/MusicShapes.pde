@@ -11,10 +11,14 @@ int paperWidth = 120;
 int paperHeight = 280;
 //
 //Population using unitless ratios (i.e. millimeters to pixels)
-float LoopDivX = appWidth * 25 / paperWidth;
-float LoopDivY = appHeight * 85 / paperHeight;
-float LoopDivWidth = appWidth * 10 / paperWidth;
-float LoopDivHeight = appHeight * 10 / paperHeight;
+float LoopSquareDivX = appWidth * 25 / paperWidth;
+float LoopSquareDivY = appHeight * 85 / paperHeight;
+float LoopSquareDivWidth = appWidth * 10 / paperWidth;
+float LoopSquareDivHeight = appHeight * 10 / paperHeight;
+float LoopDivX = LoopSquareDivX + 4 / LoopSquareDivWidth;
+float LoopDivY = LoopSquareDivY + 4 / LoopSquareDivHeight;
+float LoopDivWidth = LoopSquareDivWidth - 4 / LoopSquareDivWidth;
+float LoopDivHeight = LoopSquareDivX - 4 / LoopSquareDivHeight;
 
 float RewindDivX = appWidth * 35 / paperWidth;
 float RewindDivY = appHeight * 85 / paperHeight;
@@ -48,11 +52,12 @@ float ShuffleDivHeight = appHeight * 10 / paperHeight;
 //
 //DIVs
 //rect( DivX, DivY, DivWidth, DivHeight );
-rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight ); 
+rect( LoopSquareDivX, LoopSquareDivY, LoopSquareDivWidth, LoopSquareDivHeight ); 
 rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
 rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
 rect( PausePlayDivX, PausePlayDivY, PausePlayDivWidth, PausePlayDivHeight );
 rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
 rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
 rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
+rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
 //
