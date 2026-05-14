@@ -39,11 +39,11 @@ void setup() {
   float RecordBoxDivWidth = appWidth * 80 / paperWidth;
   float RecordBoxDivHeight = appHeight * 60 / paperHeight;
 
-  float LoopDivX = appWidth * 25 / paperWidth;
-  float LoopDivY = appHeight * 85 / paperHeight;
-  float LoopDivWidth = appWidth * 10 / paperWidth;
-  float LoopDivHeight = appHeight * 10 / paperHeight;
-  
+  LoopDivX = appWidth * 25 / paperWidth;
+  LoopDivY = appHeight * 85 / paperHeight;
+  LoopDivWidth = appWidth * 10 / paperWidth;
+  LoopDivHeight = appHeight * 10 / paperHeight;
+
   float RewindDivX = appWidth * 35 / paperWidth;
   float RewindDivY = appHeight * 85 / paperHeight;
   float RewindDivWidth = appWidth * 10 / paperWidth;
@@ -172,12 +172,12 @@ void draw() {
   stroke(0);
   strokeWeight(2);
   noFill();
-  float centerX = LoopDivX + ( 1/2 * LoopDivWidth); // X-coordinate of the center
-  float centerY = LoopDivY + ( 1/2 * LoopDivHeight); // Y-coordinate of the center
+  float centerX = LoopDivX + ( LoopDivWidth / 2 ); // X-coordinate of the center
+  float centerY = LoopDivY + ( LoopDivHeight / 2 ); // Y-coordinate of the center
   float radius = 10; // Radius of the semi-circle
 
   // Draw the semi-circle (arc)
-  arc(centerX, centerY, radius * 2, radius * 2, 0, PI); // From 0 to PI (half-circle)
+  arc(centerX, centerY, radius * 2, radius * 2, -2, PI); // From 0 to PI (half-circle)
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }//End Draw
 //
