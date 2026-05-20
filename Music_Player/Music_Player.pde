@@ -19,6 +19,10 @@ float LoopDivX ;
 float LoopDivY ;
 float LoopDivWidth ;
 float LoopDivHeight ;
+float RewindDivX ;
+float RewindDivY ;
+float RewindDivWidth ;
+float RewindDivHeight ;
 
 void setup() {
   /*
@@ -44,10 +48,10 @@ void setup() {
   LoopDivWidth = appWidth * 10 / paperWidth;
   LoopDivHeight = appHeight * 10 / paperHeight;
 
-  float RewindDivX = appWidth * 35 / paperWidth;
-  float RewindDivY = appHeight * 85 / paperHeight;
-  float RewindDivWidth = appWidth * 10 / paperWidth;
-  float RewindDivHeight = appHeight * 10 / paperHeight;
+  RewindDivX = appWidth * 35 / paperWidth;
+  RewindDivY = appHeight * 85 / paperHeight;
+  RewindDivWidth = appWidth * 10 / paperWidth;
+  RewindDivHeight = appHeight * 10 / paperHeight;
 
   float PreviousDivX = appWidth * 45 / paperWidth;
   float PreviousDivY = appHeight * 85 / paperHeight;
@@ -172,12 +176,53 @@ void draw() {
   stroke(0);
   strokeWeight(2);
   noFill();
-  float centerX = LoopDivX + ( LoopDivWidth / 2 ); // X-coordinate of the center
-  float centerY = LoopDivY + ( LoopDivHeight / 2 ); // Y-coordinate of the center
-  float radius = 10; // Radius of the semi-circle
-
-  // Draw the semi-circle (arc)
-  arc(centerX, centerY, radius * 2, radius * 2, -2, PI); // From 0 to PI (half-circle)
+  float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
+  float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
+  float RewindRadius = 8 ;
+  arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -2, PI); // From 0 to PI (half-circle)
+  float RewindEndX = RewindCenterX - RewindRadius;
+  float RewindEndY = RewindCenterY;
+  float RewindArrowSize = RewindRadius * 0.5 ;
+  fill(0);
+  triangle(
+    RewindEndX, RewindEndY,
+    RewindEndX - RewindArrowSize, RewindEndY - RewindArrowSize / 5,
+    RewindEndX - RewindArrowSize, RewindEndY + RewindArrowSize
+    );
+  stroke(0);
+  strokeWeight(2);
+  noFill();
+  float Loop1CenterX = LoopDivX + ( LoopDivWidth / 2 ); // X-coordinate of the center
+  float Loop1CenterY = LoopDivY + ( LoopDivHeight / 2 ); // Y-coordinate of the center
+  float Loop1Radius = 8 ; // Radius of the semi-circle
+  arc(Loop1CenterX, Loop1CenterY, Loop1Radius * 2, Loop1Radius * 2, 0.2, PI); // From 0 to PI (half-circle)
+  float Loop1EndX = Loop1CenterX - Loop1Radius; // X-coordinate of the end point (cos(PI) * radius)
+  float Loop1EndY = Loop1CenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
+  // Draw the arrowhead (triangle) at the end of the semi-circle
+  float Loop1ArrowSize = Loop1Radius * 0.5 ; // Size of the arrowhead
+  fill(0); // Black fill for the arrowhead
+  triangle(
+    Loop1EndX, Loop1EndY, // Base of the arrowhead (end of the semi-circle)
+    Loop1EndX - Loop1ArrowSize, Loop1EndY - Loop1ArrowSize / 5, // Left point of the arrowhead
+    Loop1EndX - Loop1ArrowSize, Loop1EndY + Loop1ArrowSize // Right point of the arrowhead
+    );
+  stroke(0);
+  strokeWeight(2);
+  noFill();
+  float Loop2CenterX = LoopDivX + ( LoopDivWidth / 2 ); // X-coordinate of the center
+  float Loop2CenterY = LoopDivY + ( LoopDivHeight / 2 ); // Y-coordinate of the center
+  float Loop2Radius = 8 ; // Radius of the semi-circle
+  arc(Loop2CenterX, Loop2CenterY, Loop2Radius * 2, Loop2Radius * 2, -2.5, PI); // From 0 to PI (half-circle)
+  float Loop2EndX = Loop2CenterX + Loop2Radius; // X-coordinate of the end point (cos(PI) * radius)
+  float Loop2EndY = Loop2CenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
+  // Draw the arrowhead (triangle) at the end of the semi-circle
+  float Loop2ArrowSize = Loop2Radius * 0.5 ; // Size of the arrowhead
+  fill(0); // Black fill for the arrowhead
+  triangle(
+    Loop2EndX, Loop2EndY, // Base of the arrowhead (end of the semi-circle)
+    Loop2EndX - Loop2ArrowSize, Loop2EndY - Loop2ArrowSize / 5, // Left point of the arrowhead
+    Loop2EndX - Loop2ArrowSize, Loop2EndY + Loop2ArrowSize // Right point of the arrowhead
+    );
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }//End Draw
 //
