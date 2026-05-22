@@ -274,8 +274,8 @@ void draw() {
   arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 4.5, 6.5 );
   triangle(
     endX2, endY2, // Base of the arrowhead (end of the semi-circle)
-    endX2 + arrowSize, endY2 + arrowSize * 2, // Left point of the arrowhead
-    endX2 - arrowSize, endY2 - arrowSize / 2  // Right point of the arrowhead
+    endX2 + arrowSize, endY2, // Left point of the arrowhead
+    endX2 - arrowSize, endY2  // Right point of the arrowhead
     );
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }//End Draw
