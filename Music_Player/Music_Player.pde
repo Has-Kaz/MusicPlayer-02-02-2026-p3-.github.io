@@ -14,7 +14,10 @@ import ddf.minim.ugens.*;
  - MUST: Music Button-vars, possibliy associated DIV-vars
  */
 //
-
+float RecordBoxDivX ;
+float RecordBoxDivY ;
+float RecordBoxDivWidth ;
+float RecordBoxDivHeight ;
 float LoopDivX ;
 float LoopDivY ;
 float LoopDivWidth ;
@@ -23,6 +26,71 @@ float RewindDivX ;
 float RewindDivY ;
 float RewindDivWidth ;
 float RewindDivHeight ;
+float PreviousDivX ;
+float PreviousDivY ;
+float PreviousDivWidth ;
+float PreviousDivHeight ;
+float PausePlayDivX ;
+float PausePlayDivY ;
+float PausePlayDivWidth ;
+float PausePlayDivHeight ;
+float NextDivX ;
+float NextDivY ;
+float NextDivWidth ;
+float NextDivHeight ;
+float FastForwardDivX ;
+float FastForwardDivY ;
+float FastForwardDivWidth ;
+float FastForwardDivHeight ;
+float ShuffleDivX ;
+float ShuffleDivY ;
+float ShuffleDivWidth ;
+float ShuffleDivHeight ;
+float SongPicOneDivX ;
+float SongPicOneDivY ;
+float SongPicOneDivWidth ;
+float SongPicOneDivHeight ;
+float SongeTitleOneDivX ;
+float SongeTitleOneDivY ;
+float SongeTitleOneDivWidth ;
+float SongeTitleOneDivHeight ;
+float SongPicTwoDivX ;
+float SongPicTwoDivY ;
+float SongPicTwoDivWidth ;
+float SongPicTwoDivHeight ;
+float SongeTitleTwoDivX ;
+float SongeTitleTwoDivY ;
+float SongeTitleTwoDivWidth ;
+float SongeTitleTwoDivHeight ;
+float SongPicThreeDivX ;
+float SongPicThreeDivY ;
+float SongPicThreeDivWidth ;
+float SongPicThreeDivHeight ;
+float SongeTitleThreeDivX ;
+float SongeTitleThreeDivY ;
+float SongeTitleThreeDivWidth ;
+float SongeTitleThreeDivHeight ;
+float SongPicFourDivX ;
+float SongPicFourDivY ;
+float SongPicFourDivWidth ;
+float SongPicFourDivHeight ;
+float SongeTitleFourDivX ;
+float SongeTitleFourDivY ;
+float SongeTitleFourDivWidth ;
+float SongeTitleFourDivHeight ;
+float SongPicFiveDivX ;
+float SongPicFiveDivY ;
+float SongPicFiveDivWidth ;
+float SongPicFiveDivHeight ;
+float SongeTitleFiveDivX ;
+float SongeTitleFiveDivY ;
+float SongeTitleFiveDivWidth ;
+float SongeTitleFiveDivHeight ;
+float radius ;
+float loopCenterX ;
+float loopCenterY ;
+float rewindCenterX ;
+float rewindCenterY ;
 
 void setup() {
   /*
@@ -38,10 +106,10 @@ void setup() {
   int paperWidth = 120;
   int paperHeight = 280;
   //
-  float RecordBoxDivX = appWidth * 20 / paperWidth;
-  float RecordBoxDivY = appHeight * 10 / paperHeight;
-  float RecordBoxDivWidth = appWidth * 80 / paperWidth;
-  float RecordBoxDivHeight = appHeight * 60 / paperHeight;
+  RecordBoxDivX = appWidth * 20 / paperWidth;
+  RecordBoxDivY = appHeight * 10 / paperHeight;
+  RecordBoxDivWidth = appWidth * 80 / paperWidth;
+  RecordBoxDivHeight = appHeight * 60 / paperHeight;
 
   LoopDivX = appWidth * 25 / paperWidth;
   LoopDivY = appHeight * 85 / paperHeight;
@@ -53,90 +121,80 @@ void setup() {
   RewindDivWidth = appWidth * 10 / paperWidth;
   RewindDivHeight = appHeight * 10 / paperHeight;
 
-  float PreviousDivX = appWidth * 45 / paperWidth;
-  float PreviousDivY = appHeight * 85 / paperHeight;
-  float PreviousDivWidth = appWidth * 10 / paperWidth;
-  float PreviousDivHeight = appHeight * 10 / paperHeight;
+  PreviousDivX = appWidth * 45 / paperWidth;
+  PreviousDivY = appHeight * 85 / paperHeight;
+  PreviousDivWidth = appWidth * 10 / paperWidth;
+  PreviousDivHeight = appHeight * 10 / paperHeight;
 
-  float PausePlayDivX = appWidth * 55 / paperWidth;
-  float PausePlayDivY = appHeight * 85 / paperHeight;
-  float PausePlayDivWidth = appWidth * 10 / paperWidth;
-  float PausePlayDivHeight = appHeight * 10 / paperHeight;
+  PausePlayDivX = appWidth * 55 / paperWidth;
+  PausePlayDivY = appHeight * 85 / paperHeight;
+  PausePlayDivWidth = appWidth * 10 / paperWidth;
+  PausePlayDivHeight = appHeight * 10 / paperHeight;
 
-  float NextDivX = appWidth * 65 / paperWidth;
-  float NextDivY = appHeight * 85 / paperHeight;
-  float NextDivWidth = appWidth * 10 / paperWidth;
-  float NextDivHeight = appHeight * 10 / paperHeight;
+  NextDivX = appWidth * 65 / paperWidth;
+  NextDivY = appHeight * 85 / paperHeight;
+  NextDivWidth = appWidth * 10 / paperWidth;
+  NextDivHeight = appHeight * 10 / paperHeight;
 
-  float FastForwardDivX = appWidth * 75 / paperWidth;
-  float FastForwardDivY = appHeight * 85 / paperHeight;
-  float FastForwardDivWidth = appWidth * 10 / paperWidth;
-  float FastForwardDivHeight = appHeight * 10 / paperHeight;
+  FastForwardDivX = appWidth * 75 / paperWidth;
+  FastForwardDivY = appHeight * 85 / paperHeight;
+  FastForwardDivWidth = appWidth * 10 / paperWidth;
+  FastForwardDivHeight = appHeight * 10 / paperHeight;
 
-  float ShuffleDivX = appWidth * 85 / paperWidth;
-  float ShuffleDivY = appHeight * 85 / paperHeight;
-  float ShuffleDivWidth = appWidth * 10 / paperWidth;
-  float ShuffleDivHeight = appHeight * 10 / paperHeight;
+  ShuffleDivX = appWidth * 85 / paperWidth;
+  ShuffleDivY = appHeight * 85 / paperHeight;
+  ShuffleDivWidth = appWidth * 10 / paperWidth;
+  ShuffleDivHeight = appHeight * 10 / paperHeight;
 
-  float SongPicOneDivX = appWidth * 10 / paperWidth;
-  float SongPicOneDivY = appHeight * 110 / paperHeight;
-  float SongPicOneDivWidth = appWidth * 20 / paperWidth;
-  float SongPicOneDivHeight = appHeight * 20 / paperHeight;
+  SongPicOneDivX = appWidth * 10 / paperWidth;
+  SongPicOneDivY = appHeight * 110 / paperHeight;
+  SongPicOneDivWidth = appWidth * 20 / paperWidth;
+  SongPicOneDivHeight = appHeight * 20 / paperHeight;
 
-  float SongeTitleOneDivX = appWidth * 30 / paperWidth;
-  float SongeTitleOneDivY = appHeight * 110 / paperHeight;
-  float SongeTitleOneDivWidth = appWidth * 80 / paperWidth;
-  float SongeTitleOneDivHeight = appHeight * 20 / paperHeight;
+  SongeTitleOneDivX = appWidth * 30 / paperWidth;
+  SongeTitleOneDivY = appHeight * 110 / paperHeight;
+  SongeTitleOneDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleOneDivHeight = appHeight * 20 / paperHeight;
 
-  float SongPicTwoDivX = appWidth * 10 / paperWidth;
-  float SongPicTwoDivY = appHeight * 140 / paperHeight;
-  float SongPicTwoDivWidth = appWidth * 20 / paperWidth;
-  float SongPicTwoDivHeight = appHeight * 20 / paperHeight;
+  SongPicTwoDivX = appWidth * 10 / paperWidth;
+  SongPicTwoDivY = appHeight * 140 / paperHeight;
+  SongPicTwoDivWidth = appWidth * 20 / paperWidth;
+  SongPicTwoDivHeight = appHeight * 20 / paperHeight;
 
-  float SongeTitleTwoDivX = appWidth * 30 / paperWidth;
-  float SongeTitleTwoDivY = appHeight * 140 / paperHeight;
-  float SongeTitleTwoDivWidth = appWidth * 80 / paperWidth;
-  float SongeTitleTwoDivHeight = appHeight * 20 / paperHeight;
+  SongeTitleTwoDivX = appWidth * 30 / paperWidth;
+  SongeTitleTwoDivY = appHeight * 140 / paperHeight;
+  SongeTitleTwoDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleTwoDivHeight = appHeight * 20 / paperHeight;
 
-  float SongPicThreeDivX = appWidth * 10 / paperWidth;
-  float SongPicThreeDivY = appHeight * 170 / paperHeight;
-  float SongPicThreeDivWidth = appWidth * 20 / paperWidth;
-  float SongPicThreeDivHeight = appHeight * 20 / paperHeight;
+  SongPicThreeDivX = appWidth * 10 / paperWidth;
+  SongPicThreeDivY = appHeight * 170 / paperHeight;
+  SongPicThreeDivWidth = appWidth * 20 / paperWidth;
+  SongPicThreeDivHeight = appHeight * 20 / paperHeight;
 
-  float SongeTitleThreeDivX = appWidth * 30 / paperWidth;
-  float SongeTitleThreeDivY = appHeight * 170 / paperHeight;
-  float SongeTitleThreeDivWidth = appWidth * 80 / paperWidth;
-  float SongeTitleThreeDivHeight = appHeight * 20 / paperHeight;
+  SongeTitleThreeDivX = appWidth * 30 / paperWidth;
+  SongeTitleThreeDivY = appHeight * 170 / paperHeight;
+  SongeTitleThreeDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleThreeDivHeight = appHeight * 20 / paperHeight;
 
-  float SongPicFourDivX = appWidth * 10 / paperWidth;
-  float SongPicFourDivY = appHeight * 200 / paperHeight;
-  float SongPicFourDivWidth = appWidth * 20 / paperWidth;
-  float SongPicFourDivHeight = appHeight * 20 / paperHeight;
+  SongPicFourDivX = appWidth * 10 / paperWidth;
+  SongPicFourDivY = appHeight * 200 / paperHeight;
+  SongPicFourDivWidth = appWidth * 20 / paperWidth;
+  SongPicFourDivHeight = appHeight * 20 / paperHeight;
 
-  float SongeTitleFourDivX = appWidth * 30 / paperWidth;
-  float SongeTitleFourDivY = appHeight * 200 / paperHeight;
-  float SongeTitleFourDivWidth = appWidth * 80 / paperWidth;
-  float SongeTitleFourDivHeight = appHeight * 20 / paperHeight;
+  SongeTitleFourDivX = appWidth * 30 / paperWidth;
+  SongeTitleFourDivY = appHeight * 200 / paperHeight;
+  SongeTitleFourDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleFourDivHeight = appHeight * 20 / paperHeight;
 
-  float SongPicFiveDivX = appWidth * 10 / paperWidth;
-  float SongPicFiveDivY = appHeight * 230 / paperHeight;
-  float SongPicFiveDivWidth = appWidth * 20 / paperWidth;
-  float SongPicFiveDivHeight = appHeight * 20 / paperHeight;
+  SongPicFiveDivX = appWidth * 10 / paperWidth;
+  SongPicFiveDivY = appHeight * 230 / paperHeight;
+  SongPicFiveDivWidth = appWidth * 20 / paperWidth;
+  SongPicFiveDivHeight = appHeight * 20 / paperHeight;
 
-  float SongeTitleFiveDivX = appWidth * 30 / paperWidth;
-  float SongeTitleFiveDivY = appHeight * 230 / paperHeight;
-  float SongeTitleFiveDivWidth = appWidth * 80 / paperWidth;
-  float SongeTitleFiveDivHeight = appHeight * 20 / paperHeight;
-
-  float HomeDivX = appWidth * 0 / paperWidth;
-  float HomeDivY = appHeight * 260 / paperHeight;
-  float HomeDivWidth = appWidth * 60 / paperWidth;
-  float HomeDivHeight = appHeight * 20 / paperHeight;
-
-  float PlaylistDivX = appWidth * 60 / paperWidth;
-  float PlaylistDivY = appHeight * 260 / paperHeight;
-  float PlaylistDivWidth = appWidth * 60 / paperWidth;
-  float PlaylistDivHeight = appHeight * 20 / paperHeight;
+  SongeTitleFiveDivX = appWidth * 30 / paperWidth;
+  SongeTitleFiveDivY = appHeight * 230 / paperHeight;
+  SongeTitleFiveDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleFiveDivHeight = appHeight * 20 / paperHeight;
 
   /*
 float DivX = appWidth * ??? / paperWidth;
@@ -165,8 +223,6 @@ float DivX = appWidth * ??? / paperWidth;
   rect( SongeTitleFourDivX, SongeTitleFourDivY, SongeTitleFourDivWidth, SongeTitleFourDivHeight );
   rect( SongPicFiveDivX, SongPicFiveDivY, SongPicFiveDivWidth, SongPicFiveDivHeight );
   rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
-  rect( HomeDivX, HomeDivY, HomeDivWidth, HomeDivHeight );
-  rect( PlaylistDivX, PlaylistDivY, PlaylistDivWidth, PlaylistDivHeight );
   //
   //@23D music Symbol Shapes
   //
@@ -188,6 +244,38 @@ void draw() {
     RewindEndX, RewindEndY,
     RewindEndX - RewindArrowSize, RewindEndY - RewindArrowSize / 5,
     RewindEndX - RewindArrowSize, RewindEndY + RewindArrowSize
+    );
+
+  radius = ( LoopDivWidth / 10 ) * 3 ;
+  rewindCenterX = LoopDivX + ( LoopDivWidth / 2 );
+  rewindCenterY = LoopDivY + ( LoopDivHeight / 2 );
+  radius = ( LoopDivWidth / 10 ) * 3 ;
+  loopCenterX = LoopDivX + ( LoopDivWidth / 2 );
+  loopCenterY = LoopDivY + ( LoopDivHeight / 2 );
+  float endX1 = loopCenterX - radius; // X-coordinate of the end point (cos(PI) * radius)
+  float endY1 = loopCenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
+  float endX2 = loopCenterX + radius;
+  float endY2 = loopCenterY ;
+
+  stroke(0);
+  strokeWeight(2);
+  noFill();
+  arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 1.5, PI );
+  float arrowSize = radius * ( 1 / 3 ); // Size of the arrowhead
+  fill(0); // Black fill for the arrowhead
+  triangle(
+    endX1, endY1, // Base of the arrowhead (end of the semi-circle)
+    endX1 - arrowSize, endY1 - arrowSize / 2, // Left point of the arrowhead
+    endX1 - arrowSize, endY1 + arrowSize / 2  // Right point of the arrowhead
+    );
+  stroke(0);
+  strokeWeight(2);
+  noFill();
+  arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 4.5, 6.5 );
+  triangle(
+    endX2, endY2, // Base of the arrowhead (end of the semi-circle)
+    endX2 + arrowSize, endY2 + arrowSize * 2, // Left point of the arrowhead
+    endX2 - arrowSize, endY2 - arrowSize / 2  // Right point of the arrowhead
     );
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }//End Draw
