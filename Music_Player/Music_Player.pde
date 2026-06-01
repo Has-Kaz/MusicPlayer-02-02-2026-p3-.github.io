@@ -30,6 +30,9 @@ float PreviousDivX ;
 float PreviousDivY ;
 float PreviousDivWidth ;
 float PreviousDivHeight ;
+float PreviousCenterX ;
+float PreviousCenterY ;
+float PreviousArrowOneWidth ;
 float PausePlayDivX ;
 float PausePlayDivY ;
 float PausePlayDivWidth ;
@@ -125,6 +128,9 @@ void setup() {
   PreviousDivY = appHeight * 85 / paperHeight;
   PreviousDivWidth = appWidth * 10 / paperWidth;
   PreviousDivHeight = appHeight * 10 / paperHeight;
+  PreviousCenterX = PreviousDivX + (PreviousDivWidth / 2) ;
+  PreviousCenterY = PreviousDivY + (PreviousDivHeight / 2) ;
+  PreviousArrowOneWidth = (PreviousDivHeight / 10) * 8 ;
 
   PausePlayDivX = appWidth * 55 / paperWidth;
   PausePlayDivY = appHeight * 85 / paperHeight;
@@ -274,8 +280,13 @@ void draw() {
   arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 4.5, 6.5 );
   triangle(
     endX2, endY2, // Base of the arrowhead (end of the semi-circle)
-    endX2 - arrowSize, endY2 - arrowSize  , // Left point of the arrowhead
+    endX2 - arrowSize, endY2 - arrowSize, // Left point of the arrowhead
     endX2 + arrowSize, endY2 - arrowSize // Right point of the arrowhead
+    );
+  triangle(
+    PreviousCenterX, PreviousCenterY,
+    PreviousCenterX, PreviousCenterY - PreviousArrowOneWidth,
+    PreviousCenterX, PreviousCenterY + (PreviousArrowOneWidth / 2)
     );
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }//End Draw
