@@ -32,7 +32,7 @@ float PreviousDivWidth ;
 float PreviousDivHeight ;
 float PreviousCenterX ;
 float PreviousCenterY ;
-float PreviousArrowOneWidth ;
+float PreviousArrowWidth ;
 float PausePlayDivX ;
 float PausePlayDivY ;
 float PausePlayDivWidth ;
@@ -41,6 +41,9 @@ float NextDivX ;
 float NextDivY ;
 float NextDivWidth ;
 float NextDivHeight ;
+float NextCenterX ;
+float NextCenterY ;
+float NextArrowWidth ;
 float FastForwardDivX ;
 float FastForwardDivY ;
 float FastForwardDivWidth ;
@@ -130,7 +133,7 @@ void setup() {
   PreviousDivHeight = appHeight * 10 / paperHeight;
   PreviousCenterX = PreviousDivX + (PreviousDivWidth / 2) ;
   PreviousCenterY = PreviousDivY + (PreviousDivHeight / 2) ;
-  PreviousArrowOneWidth = (PreviousDivHeight / 10) * 8 ;
+  PreviousArrowWidth = (PreviousDivHeight / 10) * 7 ;
 
   PausePlayDivX = appWidth * 55 / paperWidth;
   PausePlayDivY = appHeight * 85 / paperHeight;
@@ -141,6 +144,9 @@ void setup() {
   NextDivY = appHeight * 85 / paperHeight;
   NextDivWidth = appWidth * 10 / paperWidth;
   NextDivHeight = appHeight * 10 / paperHeight;
+  NextCenterX = NextDivX + (NextDivWidth / 2) ;
+  NextCenterY = NextDivY + (NextDivHeight / 2) ;
+  NextArrowWidth = (NextDivHeight / 10) * 7 ;
 
   FastForwardDivX = appWidth * 75 / paperWidth;
   FastForwardDivY = appHeight * 85 / paperHeight;
@@ -283,11 +289,38 @@ void draw() {
     endX2 - arrowSize, endY2 - arrowSize, // Left point of the arrowhead
     endX2 + arrowSize, endY2 - arrowSize // Right point of the arrowhead
     );
+  stroke(0);
+  strokeWeight(2);
+  fill(0);
+  triangle(
+    PreviousCenterX - (PreviousArrowWidth / 2), PreviousCenterY,
+    PreviousCenterX, PreviousCenterY - ( PreviousArrowWidth / 2 ),
+    PreviousCenterX, PreviousCenterY + ( PreviousArrowWidth / 2 )
+    );
+  stroke(0);
+  strokeWeight(2);
+  fill(0);
   triangle(
     PreviousCenterX, PreviousCenterY,
-    PreviousCenterX, PreviousCenterY - PreviousArrowOneWidth,
-    PreviousCenterX, PreviousCenterY + (PreviousArrowOneWidth / 2)
+    PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY - ( PreviousArrowWidth / 2 ),
+    PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY + ( PreviousArrowWidth / 2 )
     );
+  stroke(0);
+  strokeWeight(2);
+  fill(0);
+  triangle(
+    NextCenterX + (NextArrowWidth / 2), NextCenterY,
+    NextCenterX, NextCenterY - ( NextArrowWidth / 2 ),
+    NextCenterX, NextCenterY + ( NextArrowWidth / 2 )
+    );
+  stroke(0);
+   strokeWeight(2);
+   fill(0);
+   triangle(
+   NextCenterX, NextCenterY,
+   NextCenterX - (NextArrowWidth / 2), NextCenterY - ( NextArrowWidth / 2 ),
+   NextCenterX - (NextArrowWidth / 2), NextCenterY + ( NextArrowWidth / 2 )
+   );
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }//End Draw
 //
