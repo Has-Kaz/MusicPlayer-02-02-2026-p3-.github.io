@@ -13,8 +13,12 @@ import ddf.minim.ugens.*;
  - Possible DIV-vars needed in draw(), etc.
  - MUST: Music Button-vars, possibliy associated DIV-vars
  */
-  //
-  float LyricsBoxDivX ;
+//
+float LineEndOneX ;
+float LineEndOneY ;
+float LineEndTwoX ; 
+float LineEndTwoY ;
+float LyricsBoxDivX ;
 float LyricsBoxDivY ;
 float LyricsBoxDivWidth ;
 float LyricsBoxDivHeight ;
@@ -166,6 +170,13 @@ void setup() {
   ShuffleDivY = appHeight * 100 / paperHeight;
   ShuffleDivWidth = appWidth * 20 / paperWidth;
   ShuffleDivHeight = appHeight * 20 / paperHeight;
+  
+  stroke(0);
+  strokeWeight(5);
+  LineEndOneX = appWidth * -20 / paperWidth;
+  LineEndOneY = appHeight * 125 / paperHeight;
+  LineEndTwoX = appWidth * 140 / paperWidth;
+  LineEndTwoY = appHeight * 125 / paperHeight;
 
   SongPicOneDivX = appWidth * -10 / paperWidth;
   SongPicOneDivY = appHeight * 130 / paperHeight;
@@ -266,6 +277,7 @@ void drawInterface() {
   rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
   rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
   rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
+  line( LineEndOneX, LineEndOneY, LineEndTwoX, LineEndTwoY );
   rect( SongPicOneDivX, SongPicOneDivY, SongPicOneDivWidth, SongPicOneDivHeight );
   rect( SongeTitleOneDivX, SongeTitleOneDivY, SongeTitleOneDivWidth, SongeTitleOneDivHeight );
   rect( SongPicTwoDivX, SongPicTwoDivY, SongPicTwoDivWidth, SongPicTwoDivHeight );
