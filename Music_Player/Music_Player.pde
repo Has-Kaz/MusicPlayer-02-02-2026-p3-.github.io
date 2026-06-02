@@ -266,6 +266,7 @@ void drawInterface() {
   rect( SongPicFiveDivX, SongPicFiveDivY, SongPicFiveDivWidth, SongPicFiveDivHeight );
   rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
 
+  // Loop Symbol Left Semi Circle
   radius = ( LoopDivWidth / 10 ) * 3 ;
   rewindCenterX = LoopDivX + ( LoopDivWidth / 2 );
   rewindCenterY = LoopDivY + ( LoopDivHeight / 2 );
@@ -276,29 +277,15 @@ void drawInterface() {
   float endY1 = loopCenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
   float endX2 = loopCenterX + radius;
   float endY2 = loopCenterY ;
-  
-  stroke(0);
-  strokeWeight(3.5);
-  float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
-  float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
-  float RewindRadius = 10 ;
-  arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -2, PI); // From 0 to PI (half-circle)
-  float RewindEndX = RewindCenterX - RewindRadius;
-  float RewindEndY = RewindCenterY;
-  float RewindArrowSize = RewindRadius * 0.5 ;
-  fill(0);
-  triangle(
-    RewindEndX, RewindEndY,
-    RewindEndX - RewindArrowSize, RewindEndY - RewindArrowSize / 5,
-    RewindEndX - RewindArrowSize, RewindEndY + RewindArrowSize
-    );
 
+  // Loop Symbol Right Semi Circle
   stroke(0);
   strokeWeight(3.5);
   noFill();
   arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 1.5, PI );
   float arrowSize = radius * 0.333333333 ; // Size of the arrowhead
   fill(0); // Black fill for the arrowhead
+  //Loop Symbol Arrow Heads
   triangle(
     endX1, endY1, // Base of the arrowhead (end of the semi-circle)
     endX1 - arrowSize, endY1 - arrowSize / 2, // Left point of the arrowhead
@@ -313,6 +300,26 @@ void drawInterface() {
     endX2 - arrowSize, endY2 - arrowSize, // Left point of the arrowhead
     endX2 + arrowSize, endY2 - arrowSize // Right point of the arrowhead
     );
+
+  // Rewind Symbol Circle
+  stroke(0);
+  strokeWeight(3.5);
+  float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
+  float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
+  float RewindRadius = 10 ;
+  arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -2, PI); // From 0 to PI (half-circle)
+  float RewindEndX = RewindCenterX - RewindRadius;
+  float RewindEndY = RewindCenterY;
+  float RewindArrowSize = RewindRadius * 0.5 ;
+  // Rewind Symbol Arrow Head
+  fill(0);
+  triangle(
+    RewindEndX, RewindEndY,
+    RewindEndX - RewindArrowSize, RewindEndY - RewindArrowSize / 5,
+    RewindEndX - RewindArrowSize, RewindEndY + RewindArrowSize
+    );
+
+  //Previous Symbol Left Arrow
   stroke(0);
   strokeWeight(2);
   fill(0);
@@ -321,6 +328,7 @@ void drawInterface() {
     PreviousCenterX, PreviousCenterY - ( PreviousArrowWidth / 2 ),
     PreviousCenterX, PreviousCenterY + ( PreviousArrowWidth / 2 )
     );
+  //Previous Symbol Right Arrow
   stroke(0);
   strokeWeight(2);
   fill(0);
@@ -329,6 +337,8 @@ void drawInterface() {
     PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY - ( PreviousArrowWidth / 2 ),
     PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY + ( PreviousArrowWidth / 2 )
     );
+
+  //Next Symbol Right Arrow
   stroke(0);
   strokeWeight(2);
   fill(0);
@@ -337,6 +347,7 @@ void drawInterface() {
     NextCenterX, NextCenterY - ( NextArrowWidth / 2 ),
     NextCenterX, NextCenterY + ( NextArrowWidth / 2 )
     );
+  //Next Symbol Left Arrow
   stroke(0);
   strokeWeight(2);
   fill(0);
@@ -345,6 +356,8 @@ void drawInterface() {
     NextCenterX - (NextArrowWidth / 2), NextCenterY - ( NextArrowWidth / 2 ),
     NextCenterX - (NextArrowWidth / 2), NextCenterY + ( NextArrowWidth / 2 )
     );
+    
+    //Fast Forward Symbol
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }
 //
