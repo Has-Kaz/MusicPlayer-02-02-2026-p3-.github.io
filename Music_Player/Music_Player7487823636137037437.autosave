@@ -99,16 +99,24 @@ float rewindCenterX ;
 float rewindCenterY ;
 int appWidth;
 int appHeight;
-float scaleFactor;
-final int DESIGN_WIDTH = 470;
-final int DESIGN_HEIGHT = 1000;
 void settings() {
-  fullScreen();
+  float targetRatio = 470.0 / 1000.0;
+  float screenRatio = float(displayWidth) / float(displayHeight);
+  if (screenRatio > targetRatio) {
+    appHeight = displayHeight;
+    appWidth = int(appHeight * targetRatio);
+  } else {
+    appWidth = displayWidth;
+    appHeight = int(appWidth / targetRatio);
+  }
+  size(appWidth, appHeight);
 }
+
 void setup() {
+  /*
+*/
+  //
   println(displayWidth, displayHeight);
-  appWidth = DESIGN_WIDTH;
-  appHeight = DESIGN_HEIGHT;
   int paperWidth = 120;
   int paperHeight = 280;
   //
@@ -231,57 +239,22 @@ float DivX = appWidth * ??? / paperWidth;
   rect( SongeTitleTwoDivX, SongeTitleTwoDivY, SongeTitleTwoDivWidth, SongeTitleTwoDivHeight );
   rect( SongPicThreeDivX, SongPicThreeDivY, SongPicThreeDivWidth, SongPicThreeDivHeight );
   rect( SongeTitleThreeDivX, SongeTitleThreeDivY, SongeTitleThreeDivWidth, SongeTitleThreeDivHeight );
-}//End Setup
-//
-void draw() {
-  background(255);
-  scaleFactor = min(float(width) / appWidth, float(height) / appHeight);
-  pushMatrix();
-  translate((width - appWidth * scaleFactor) / 2, (height - appHeight * scaleFactor) / 2);
-  scale(scaleFactor);
-  drawInterface();
-  popMatrix();
-}
-
-void drawInterface() {
-  stroke(0);
-  strokeWeight(2);
-  noFill();
-  rect( RecordBoxDivX, RecordBoxDivY, RecordBoxDivWidth, RecordBoxDivHeight );
-  rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
-  rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
-  rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
-  rect( PausePlayDivX, PausePlayDivY, PausePlayDivWidth, PausePlayDivHeight );
-  rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
-  rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
-  rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
-  rect( SongPicOneDivX, SongPicOneDivY, SongPicOneDivWidth, SongPicOneDivHeight );
-  rect( SongeTitleOneDivX, SongeTitleOneDivY, SongeTitleOneDivWidth, SongeTitleOneDivHeight );
-  rect( SongPicTwoDivX, SongPicTwoDivY, SongPicTwoDivWidth, SongPicTwoDivHeight );
-  rect( SongeTitleTwoDivX, SongeTitleTwoDivY, SongeTitleTwoDivWidth, SongeTitleTwoDivHeight );
-  rect( SongPicThreeDivX, SongPicThreeDivY, SongPicThreeDivWidth, SongPicThreeDivHeight );
-  rect( SongeTitleThreeDivX, SongeTitleThreeDivY, SongeTitleThreeDivWidth, SongeTitleThreeDivHeight );
   rect( SongPicFourDivX, SongPicFourDivY, SongPicFourDivWidth, SongPicFourDivHeight );
   rect( SongeTitleFourDivX, SongeTitleFourDivY, SongeTitleFourDivWidth, SongeTitleFourDivHeight );
   rect( SongPicFiveDivX, SongPicFiveDivY, SongPicFiveDivWidth, SongPicFiveDivHeight );
   rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
-
-  radius = ( LoopDivWidth / 10 ) * 3 ;
-  rewindCenterX = LoopDivX + ( LoopDivWidth / 2 );
-  rewindCenterY = LoopDivY + ( LoopDivHeight / 2 );
-  radius = ( LoopDivWidth / 10 ) * 3 ;
-  loopCenterX = LoopDivX + ( LoopDivWidth / 2 );
-  loopCenterY = LoopDivY + ( LoopDivHeight / 2 );
-  float endX1 = loopCenterX - radius; // X-coordinate of the end point (cos(PI) * radius)
-  float endY1 = loopCenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
-  float endX2 = loopCenterX + radius;
-  float endY2 = loopCenterY ;
-  
+  //
+  //@23D music Symbol Shapes
+  //
+}//End Setup
+//
+void draw() {
   stroke(0);
-  strokeWeight(3.5);
+  strokeWeight(2);
+  noFill();
   float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
   float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
-  float RewindRadius = 10 ;
+  float RewindRadius = 8 ;
   arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -2, PI); // From 0 to PI (half-circle)
   float RewindEndX = RewindCenterX - RewindRadius;
   float RewindEndY = RewindCenterY;
@@ -293,8 +266,19 @@ void drawInterface() {
     RewindEndX - RewindArrowSize, RewindEndY + RewindArrowSize
     );
 
+  radius = ( LoopDivWidth / 10 ) * 3 ;
+  rewindCenterX = LoopDivX + ( LoopDivWidth / 2 );
+  rewindCenterY = LoopDivY + ( LoopDivHeight / 2 );
+  radius = ( LoopDivWidth / 10 ) * 3 ;
+  loopCenterX = LoopDivX + ( LoopDivWidth / 2 );
+  loopCenterY = LoopDivY + ( LoopDivHeight / 2 );
+  float endX1 = loopCenterX - radius; // X-coordinate of the end point (cos(PI) * radius)
+  float endY1 = loopCenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
+  float endX2 = loopCenterX + radius;
+  float endY2 = loopCenterY ;
+
   stroke(0);
-  strokeWeight(3.5);
+  strokeWeight(2);
   noFill();
   arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 1.5, PI );
   float arrowSize = radius * 0.333333333 ; // Size of the arrowhead
@@ -305,7 +289,7 @@ void drawInterface() {
     endX1 - arrowSize, endY1 + arrowSize / 2  // Right point of the arrowhead
     );
   stroke(0);
-  strokeWeight(3.5);
+  strokeWeight(2);
   noFill();
   arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 4.5, 6.5 );
   triangle(
@@ -338,15 +322,15 @@ void drawInterface() {
     NextCenterX, NextCenterY + ( NextArrowWidth / 2 )
     );
   stroke(0);
-  strokeWeight(2);
-  fill(0);
-  triangle(
-    NextCenterX, NextCenterY,
-    NextCenterX - (NextArrowWidth / 2), NextCenterY - ( NextArrowWidth / 2 ),
-    NextCenterX - (NextArrowWidth / 2), NextCenterY + ( NextArrowWidth / 2 )
-    );
+   strokeWeight(2);
+   fill(0);
+   triangle(
+   NextCenterX, NextCenterY,
+   NextCenterX - (NextArrowWidth / 2), NextCenterY - ( NextArrowWidth / 2 ),
+   NextCenterX - (NextArrowWidth / 2), NextCenterY + ( NextArrowWidth / 2 )
+   );
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
-}
+}//End Draw
 //
 void mousePressed() {
   //2D Music Symbol Changes: sending Boolean to draw()
