@@ -307,7 +307,7 @@ void drawInterface() {
   float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
   float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
   float RewindRadius = 10 ;
-  arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -2, PI); // From 0 to PI (half-circle)
+  arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -PI, 2); // From 0 to PI (half-circle)
   float RewindEndX = RewindCenterX - RewindRadius;
   float RewindEndY = RewindCenterY;
   float RewindArrowSize = RewindRadius * 0.5 ;
@@ -315,8 +315,8 @@ void drawInterface() {
   fill(0);
   triangle(
     RewindEndX, RewindEndY,
-    RewindEndX - RewindArrowSize, RewindEndY - RewindArrowSize / 5,
-    RewindEndX - RewindArrowSize, RewindEndY + RewindArrowSize
+    RewindEndX - RewindArrowSize / 2, RewindEndY - RewindArrowSize,
+    RewindEndX + RewindArrowSize / 2, RewindEndY - RewindArrowSize
     );
 
   //Previous Symbol Left Arrow
@@ -357,23 +357,32 @@ void drawInterface() {
     NextCenterX - (NextArrowWidth / 2), NextCenterY + ( NextArrowWidth / 2 )
     );
 
-  //Fast Forward Symbol
+  //Fast Forward Symbol Arc
   stroke(0);
   strokeWeight(3.5);
-  float FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the center
+  noFill();
+  float FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the centerfloat FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the center
   float FastForwardCenterY = FastForwardDivY + ( FastForwardDivHeight / 2 ); // Y-coordinate of the center
   float FastForwardRadius = 10 ;
   arc(FastForwardCenterX, FastForwardCenterY, FastForwardRadius * 2, FastForwardRadius * 2, -5.3, -0.75 ); // From 0 to PI (half-circle)
   float FastForwardEndX = FastForwardCenterX + FastForwardRadius;
   float FastForwardEndY = FastForwardCenterY;
   float FastForwardArrowSize = FastForwardRadius * 0.5 ;
+  //Fast Forward Symbol Arrow Head
   fill(0);
   triangle(
     FastForwardEndX, FastForwardEndY,
     FastForwardEndX - FastForwardArrowSize / 2, FastForwardEndY - FastForwardArrowSize,
-    FastForwardEndX + FastForwardArrowSize / 2, FastForwardEndY - FastForwardArrowSize 
+    FastForwardEndX + FastForwardArrowSize / 2, FastForwardEndY - FastForwardArrowSize
     );
 
+  //Shuffle Symbol
+  float ShuffleCenterX = ShuffleDivX + ( ShuffleDivWidth / 2 ) ;
+  float ShuffleCenterY = ShuffleDivY + ( ShuffleDivHeight / 2 ) ;
+  float ShuffleStartPointOneX = ShuffleCenterX - ShuffleDivWidth / 0.4 ;
+  float ShuffleStartPointOneY = ShuffleCenterY - ShuffleDivHeight / 0.4 ;
+  float ShuffleStartPointTwoX = ShuffleCenterX - ShuffleDivWidth / 0.4 ;
+  float ShuffleStartPointTwoY = ShuffleCenterY + ShuffleDivHeight / 0.4 ;
 
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }
