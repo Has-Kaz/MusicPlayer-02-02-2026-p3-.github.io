@@ -13,11 +13,15 @@ import ddf.minim.ugens.*;
  - Possible DIV-vars needed in draw(), etc.
  - MUST: Music Button-vars, possibliy associated DIV-vars
  */
-//
-float RecordBoxDivX ;
-float RecordBoxDivY ;
-float RecordBoxDivWidth ;
-float RecordBoxDivHeight ;
+  //
+  float LyricsBoxDivX ;
+float LyricsBoxDivY ;
+float LyricsBoxDivWidth ;
+float LyricsBoxDivHeight ;
+float TitleDivX ;
+float TitleDivY ;
+float TitleDivWidth ;
+float TitleDivHeight ;
 float LoopDivX ;
 float LoopDivY ;
 float LoopDivWidth ;
@@ -112,100 +116,105 @@ void setup() {
   int paperWidth = 120;
   int paperHeight = 280;
   //
-  RecordBoxDivX = appWidth * 20 / paperWidth;
-  RecordBoxDivY = appHeight * 10 / paperHeight;
-  RecordBoxDivWidth = appWidth * 80 / paperWidth;
-  RecordBoxDivHeight = appHeight * 60 / paperHeight;
+  LyricsBoxDivX = appWidth * -10 / paperWidth;
+  LyricsBoxDivY = appHeight * 35 / paperHeight;
+  LyricsBoxDivWidth = appWidth * 140 / paperWidth;
+  LyricsBoxDivHeight = appHeight * 60 / paperHeight;
 
-  LoopDivX = appWidth * 25 / paperWidth;
-  LoopDivY = appHeight * 85 / paperHeight;
-  LoopDivWidth = appWidth * 10 / paperWidth;
-  LoopDivHeight = appHeight * 10 / paperHeight;
+  TitleDivX = appWidth * -10 / paperWidth;
+  TitleDivY = appHeight * 10 / paperHeight;
+  TitleDivWidth = appWidth * 140 / paperWidth;
+  TitleDivHeight = appHeight * 22.5 / paperHeight;
 
-  RewindDivX = appWidth * 35 / paperWidth;
-  RewindDivY = appHeight * 85 / paperHeight;
-  RewindDivWidth = appWidth * 10 / paperWidth;
-  RewindDivHeight = appHeight * 10 / paperHeight;
+  LoopDivX = appWidth * -10 / paperWidth;
+  LoopDivY = appHeight * 100 / paperHeight;
+  LoopDivWidth = appWidth * 20 / paperWidth;
+  LoopDivHeight = appHeight * 20 / paperHeight;
 
-  PreviousDivX = appWidth * 45 / paperWidth;
-  PreviousDivY = appHeight * 85 / paperHeight;
-  PreviousDivWidth = appWidth * 10 / paperWidth;
-  PreviousDivHeight = appHeight * 10 / paperHeight;
+  RewindDivX = appWidth * 10 / paperWidth;
+  RewindDivY = appHeight * 100 / paperHeight;
+  RewindDivWidth = appWidth * 20 / paperWidth;
+  RewindDivHeight = appHeight * 20 / paperHeight;
+
+  PreviousDivX = appWidth * 30 / paperWidth;
+  PreviousDivY = appHeight * 100 / paperHeight;
+  PreviousDivWidth = appWidth * 20 / paperWidth;
+  PreviousDivHeight = appHeight * 20 / paperHeight;
   PreviousCenterX = PreviousDivX + (PreviousDivWidth / 2) ;
   PreviousCenterY = PreviousDivY + (PreviousDivHeight / 2) ;
   PreviousArrowWidth = (PreviousDivHeight / 10) * 7 ;
 
-  PausePlayDivX = appWidth * 55 / paperWidth;
-  PausePlayDivY = appHeight * 85 / paperHeight;
-  PausePlayDivWidth = appWidth * 10 / paperWidth;
-  PausePlayDivHeight = appHeight * 10 / paperHeight;
+  PausePlayDivX = appWidth * 50 / paperWidth;
+  PausePlayDivY = appHeight * 100 / paperHeight;
+  PausePlayDivWidth = appWidth * 20 / paperWidth;
+  PausePlayDivHeight = appHeight * 20 / paperHeight;
 
-  NextDivX = appWidth * 65 / paperWidth;
-  NextDivY = appHeight * 85 / paperHeight;
-  NextDivWidth = appWidth * 10 / paperWidth;
-  NextDivHeight = appHeight * 10 / paperHeight;
+  NextDivX = appWidth * 70 / paperWidth;
+  NextDivY = appHeight * 100 / paperHeight;
+  NextDivWidth = appWidth * 20 / paperWidth;
+  NextDivHeight = appHeight * 20 / paperHeight;
   NextCenterX = NextDivX + (NextDivWidth / 2) ;
   NextCenterY = NextDivY + (NextDivHeight / 2) ;
   NextArrowWidth = (NextDivHeight / 10) * 7 ;
 
-  FastForwardDivX = appWidth * 75 / paperWidth;
-  FastForwardDivY = appHeight * 85 / paperHeight;
-  FastForwardDivWidth = appWidth * 10 / paperWidth;
-  FastForwardDivHeight = appHeight * 10 / paperHeight;
+  FastForwardDivX = appWidth * 90 / paperWidth;
+  FastForwardDivY = appHeight * 100 / paperHeight;
+  FastForwardDivWidth = appWidth * 20 / paperWidth;
+  FastForwardDivHeight = appHeight * 20 / paperHeight;
 
-  ShuffleDivX = appWidth * 85 / paperWidth;
-  ShuffleDivY = appHeight * 85 / paperHeight;
-  ShuffleDivWidth = appWidth * 10 / paperWidth;
-  ShuffleDivHeight = appHeight * 10 / paperHeight;
+  ShuffleDivX = appWidth * 110 / paperWidth;
+  ShuffleDivY = appHeight * 100 / paperHeight;
+  ShuffleDivWidth = appWidth * 20 / paperWidth;
+  ShuffleDivHeight = appHeight * 20 / paperHeight;
 
-  SongPicOneDivX = appWidth * 10 / paperWidth;
-  SongPicOneDivY = appHeight * 110 / paperHeight;
+  SongPicOneDivX = appWidth * -10 / paperWidth;
+  SongPicOneDivY = appHeight * 130 / paperHeight;
   SongPicOneDivWidth = appWidth * 20 / paperWidth;
   SongPicOneDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleOneDivX = appWidth * 30 / paperWidth;
-  SongeTitleOneDivY = appHeight * 110 / paperHeight;
-  SongeTitleOneDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleOneDivX = appWidth * 10 / paperWidth;
+  SongeTitleOneDivY = appHeight * 130 / paperHeight;
+  SongeTitleOneDivWidth = appWidth * 120 / paperWidth;
   SongeTitleOneDivHeight = appHeight * 20 / paperHeight;
 
-  SongPicTwoDivX = appWidth * 10 / paperWidth;
-  SongPicTwoDivY = appHeight * 140 / paperHeight;
+  SongPicTwoDivX = appWidth * -10 / paperWidth;
+  SongPicTwoDivY = appHeight * 160 / paperHeight;
   SongPicTwoDivWidth = appWidth * 20 / paperWidth;
   SongPicTwoDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleTwoDivX = appWidth * 30 / paperWidth;
-  SongeTitleTwoDivY = appHeight * 140 / paperHeight;
-  SongeTitleTwoDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleTwoDivX = appWidth * 10 / paperWidth;
+  SongeTitleTwoDivY = appHeight * 160 / paperHeight;
+  SongeTitleTwoDivWidth = appWidth * 120 / paperWidth;
   SongeTitleTwoDivHeight = appHeight * 20 / paperHeight;
 
-  SongPicThreeDivX = appWidth * 10 / paperWidth;
-  SongPicThreeDivY = appHeight * 170 / paperHeight;
+  SongPicThreeDivX = appWidth * -10 / paperWidth;
+  SongPicThreeDivY = appHeight * 190 / paperHeight;
   SongPicThreeDivWidth = appWidth * 20 / paperWidth;
   SongPicThreeDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleThreeDivX = appWidth * 30 / paperWidth;
-  SongeTitleThreeDivY = appHeight * 170 / paperHeight;
-  SongeTitleThreeDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleThreeDivX = appWidth * 10 / paperWidth;
+  SongeTitleThreeDivY = appHeight * 190 / paperHeight;
+  SongeTitleThreeDivWidth = appWidth * 120 / paperWidth;
   SongeTitleThreeDivHeight = appHeight * 20 / paperHeight;
 
-  SongPicFourDivX = appWidth * 10 / paperWidth;
-  SongPicFourDivY = appHeight * 200 / paperHeight;
+  SongPicFourDivX = appWidth * -10 / paperWidth;
+  SongPicFourDivY = appHeight * 220 / paperHeight;
   SongPicFourDivWidth = appWidth * 20 / paperWidth;
   SongPicFourDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleFourDivX = appWidth * 30 / paperWidth;
-  SongeTitleFourDivY = appHeight * 200 / paperHeight;
-  SongeTitleFourDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleFourDivX = appWidth * 10 / paperWidth;
+  SongeTitleFourDivY = appHeight * 220 / paperHeight;
+  SongeTitleFourDivWidth = appWidth * 120 / paperWidth;
   SongeTitleFourDivHeight = appHeight * 20 / paperHeight;
 
-  SongPicFiveDivX = appWidth * 10 / paperWidth;
-  SongPicFiveDivY = appHeight * 230 / paperHeight;
+  SongPicFiveDivX = appWidth * -10 / paperWidth;
+  SongPicFiveDivY = appHeight * 250 / paperHeight;
   SongPicFiveDivWidth = appWidth * 20 / paperWidth;
   SongPicFiveDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleFiveDivX = appWidth * 30 / paperWidth;
-  SongeTitleFiveDivY = appHeight * 230 / paperHeight;
-  SongeTitleFiveDivWidth = appWidth * 80 / paperWidth;
+  SongeTitleFiveDivX = appWidth * 10 / paperWidth;
+  SongeTitleFiveDivY = appHeight * 250 / paperHeight;
+  SongeTitleFiveDivWidth = appWidth * 120 / paperWidth;
   SongeTitleFiveDivHeight = appHeight * 20 / paperHeight;
 
   /*
@@ -217,7 +226,8 @@ float DivX = appWidth * ??? / paperWidth;
 
   //
   //DIVs
-  rect( RecordBoxDivX, RecordBoxDivY, RecordBoxDivWidth, RecordBoxDivHeight );
+  rect( LyricsBoxDivX, LyricsBoxDivY, LyricsBoxDivWidth, LyricsBoxDivHeight );
+  rect( TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
   rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
   rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
   rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
@@ -247,7 +257,8 @@ void drawInterface() {
   stroke(0);
   strokeWeight(2);
   noFill();
-  rect( RecordBoxDivX, RecordBoxDivY, RecordBoxDivWidth, RecordBoxDivHeight );
+  rect( LyricsBoxDivX, LyricsBoxDivY, LyricsBoxDivWidth, LyricsBoxDivHeight );
+  rect( TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
   rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
   rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
   rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
@@ -280,7 +291,7 @@ void drawInterface() {
 
   // Loop Symbol Right Semi Circle
   stroke(0);
-  strokeWeight(3.5);
+  strokeWeight(5);
   noFill();
   arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 1.5, PI );
   float arrowSize = radius * 0.333333333 ; // Size of the arrowhead
@@ -292,7 +303,7 @@ void drawInterface() {
     endX1 - arrowSize, endY1 + arrowSize / 2  // Right point of the arrowhead
     );
   stroke(0);
-  strokeWeight(3.5);
+  strokeWeight(5);
   noFill();
   arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 4.5, 6.5 );
   triangle(
@@ -303,10 +314,10 @@ void drawInterface() {
 
   // Rewind Symbol Circle
   stroke(0);
-  strokeWeight(3.5);
+  strokeWeight(5);
   float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
   float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
-  float RewindRadius = 10 ;
+  float RewindRadius = 25 ;
   arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -PI, 2); // From 0 to PI (half-circle)
   float RewindEndX = RewindCenterX - RewindRadius;
   float RewindEndY = RewindCenterY;
@@ -359,12 +370,12 @@ void drawInterface() {
 
   //Fast Forward Symbol Arc
   stroke(0);
-  strokeWeight(3.5);
+  strokeWeight(5);
   noFill();
   float FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the centerfloat FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the center
   float FastForwardCenterY = FastForwardDivY + ( FastForwardDivHeight / 2 ); // Y-coordinate of the center
-  float FastForwardRadius = 10 ;
-  arc(FastForwardCenterX, FastForwardCenterY, FastForwardRadius * 2, FastForwardRadius * 2, -5.3, -0.75 ); // From 0 to PI (half-circle)
+  float FastForwardRadius = 25 ;
+  arc(FastForwardCenterX, FastForwardCenterY, FastForwardRadius * 2, FastForwardRadius * 2, -5.3, -0.5 ); // From 0 to PI (half-circle)
   float FastForwardEndX = FastForwardCenterX + FastForwardRadius;
   float FastForwardEndY = FastForwardCenterY;
   float FastForwardArrowSize = FastForwardRadius * 0.5 ;
@@ -377,13 +388,36 @@ void drawInterface() {
     );
 
   //Shuffle Symbol
-  float ShuffleCenterX = ShuffleDivX + ( ShuffleDivWidth / 2 ) ;
-  float ShuffleCenterY = ShuffleDivY + ( ShuffleDivHeight / 2 ) ;
-  float ShuffleStartPointOneX = ShuffleCenterX - ShuffleDivWidth / 0.4 ;
-  float ShuffleStartPointOneY = ShuffleCenterY - ShuffleDivHeight / 0.4 ;
-  float ShuffleStartPointTwoX = ShuffleCenterX - ShuffleDivWidth / 0.4 ;
-  float ShuffleStartPointTwoY = ShuffleCenterY + ShuffleDivHeight / 0.4 ;
-
+  stroke(0);
+  strokeWeight(5); // Match the weight style of other icons
+  noFill();
+  float ShuffleCenterX = ShuffleDivX + ( ShuffleDivWidth / 2 );
+  float ShuffleCenterY = ShuffleDivY + ( ShuffleDivHeight / 2 );
+  float hSpace = ShuffleDivWidth * 0.3;  // Half-width of the total icon span
+  float vSpace = ShuffleDivHeight * 0.2; // Vertical distance from center
+  float leftX  = ShuffleCenterX - hSpace;
+  float rightX = ShuffleCenterX + hSpace;
+  float topY   = ShuffleCenterY - vSpace;
+  float botY   = ShuffleCenterY + vSpace;
+  // 1. Top-Left to Bottom-Right Arrow (Backslash path)
+  bezier(leftX, topY, ShuffleCenterX - hSpace/2, topY, ShuffleCenterX + hSpace/2, botY, rightX, botY);
+  // 2. Bottom-Left to Top-Right Arrow (Forward-slash path)
+  bezier(leftX, botY, ShuffleCenterX - hSpace/2, botY, ShuffleCenterX + hSpace/2, topY, rightX, topY);
+  // 3. Arrow Heads
+  float shuffleArrowSize = ShuffleDivWidth * 0.12;
+  fill(0);
+  // Top-Right Arrow Head
+  pushMatrix();
+  translate(rightX, topY);
+  rotate(PI * 10); // Angles the arrow tip slightly upward
+  triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
+  popMatrix();
+  // Bottom-Right Arrow Head
+  pushMatrix();
+  translate(rightX, botY);
+  rotate(PI / 10); // Angles the arrow tip slightly downward
+  triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
+  popMatrix();
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }
 //
