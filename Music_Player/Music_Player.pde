@@ -356,8 +356,25 @@ void drawInterface() {
     NextCenterX - (NextArrowWidth / 2), NextCenterY - ( NextArrowWidth / 2 ),
     NextCenterX - (NextArrowWidth / 2), NextCenterY + ( NextArrowWidth / 2 )
     );
-    
-    //Fast Forward Symbol
+
+  //Fast Forward Symbol
+  stroke(0);
+  strokeWeight(3.5);
+  float FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the center
+  float FastForwardCenterY = FastForwardDivY + ( FastForwardDivHeight / 2 ); // Y-coordinate of the center
+  float FastForwardRadius = 10 ;
+  arc(FastForwardCenterX, FastForwardCenterY, FastForwardRadius * 2, FastForwardRadius * 2, -2, PI); // From 0 to PI (half-circle)
+  float FastForwardEndX = FastForwardCenterX - FastForwardRadius;
+  float FastForwardEndY = FastForwardCenterY;
+  float FastForwardArrowSize = FastForwardRadius * 0.5 ;
+  fill(0);
+  triangle(
+    FastForwardEndX, FastForwardEndY,
+    FastForwardEndX - FastForwardArrowSize, FastForwardEndY - FastForwardArrowSize / 5,
+    FastForwardEndX - FastForwardArrowSize, FastForwardEndY + FastForwardArrowSize
+    );
+
+
   //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
 }
 //
