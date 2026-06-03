@@ -1,5 +1,3 @@
-/* Music App, Final Project
- */
 //
 //Minim Library
 import ddf.minim.*;
@@ -9,14 +7,10 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
-/*Global Variables
- - Possible DIV-vars needed in draw(), etc.
- - MUST: Music Button-vars, possibliy associated DIV-vars
- */
 //
 float LineEndOneX ;
 float LineEndOneY ;
-float LineEndTwoX ; 
+float LineEndTwoX ;
 float LineEndTwoY ;
 float LyricsBoxDivX ;
 float LyricsBoxDivY ;
@@ -170,12 +164,10 @@ void setup() {
   ShuffleDivY = appHeight * 100 / paperHeight;
   ShuffleDivWidth = appWidth * 20 / paperWidth;
   ShuffleDivHeight = appHeight * 20 / paperHeight;
-  
-  stroke(0);
-  strokeWeight(5);
-  LineEndOneX = appWidth * -20 / paperWidth;
+
+  LineEndOneX = appWidth * -30/ paperWidth;
   LineEndOneY = appHeight * 125 / paperHeight;
-  LineEndTwoX = appWidth * 140 / paperWidth;
+  LineEndTwoX = appWidth * 150 / paperWidth;
   LineEndTwoY = appHeight * 125 / paperHeight;
 
   SongPicOneDivX = appWidth * -10 / paperWidth;
@@ -277,7 +269,6 @@ void drawInterface() {
   rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
   rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
   rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
-  line( LineEndOneX, LineEndOneY, LineEndTwoX, LineEndTwoY );
   rect( SongPicOneDivX, SongPicOneDivY, SongPicOneDivWidth, SongPicOneDivHeight );
   rect( SongeTitleOneDivX, SongeTitleOneDivY, SongeTitleOneDivWidth, SongeTitleOneDivHeight );
   rect( SongPicTwoDivX, SongPicTwoDivY, SongPicTwoDivWidth, SongPicTwoDivHeight );
@@ -288,6 +279,11 @@ void drawInterface() {
   rect( SongeTitleFourDivX, SongeTitleFourDivY, SongeTitleFourDivWidth, SongeTitleFourDivHeight );
   rect( SongPicFiveDivX, SongPicFiveDivY, SongPicFiveDivWidth, SongPicFiveDivHeight );
   rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
+
+  //Line
+  stroke(0);
+  strokeWeight(3.5);
+  line( LineEndOneX, LineEndOneY, LineEndTwoX, LineEndTwoY );
 
   // Loop Symbol Left Semi Circle
   radius = ( LoopDivWidth / 10 ) * 3 ;
