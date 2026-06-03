@@ -10,7 +10,7 @@ import ddf.minim.ugens.*;
 //
 float ColorOneDivX ;
 float ColorOneDivY ;
-float ColorOneDiWidth ;
+float ColorOneDivWidth ;
 float ColorOneDivHeight ;
 float LyricsBoxDivX ;
 float LyricsBoxDivY ;
@@ -106,25 +106,18 @@ float rewindCenterY ;
 int appWidth;
 int appHeight;
 float scaleFactor;
-final int DESIGN_WIDTH = 470;
-final int DESIGN_HEIGHT = 1000;
+final int DesignWidth = 470;
+final int DesignHeight = 1000;
 void settings() {
   fullScreen();
 }
 void setup() {
   println(displayWidth, displayHeight);
-  appWidth = DESIGN_WIDTH;
-  appHeight = DESIGN_HEIGHT;
+  appWidth = DesignWidth;
+  appHeight = DesignHeight;
   int paperWidth = 120;
   int paperHeight = 280;
   //
-  color Saffron = #D3AF37 ;
-  fill(Saffron);
-
-  ColorOneDivX = appWidth - appWidth ;
-  ColorOneDivY = appHeight - appHeight ;
-  ColorOneDiWidth = appWidth ;
-  ColorOneDivHeight = 125 / appHeight ;
 
   LyricsBoxDivX = appWidth * -10 / paperWidth;
   LyricsBoxDivY = appHeight * 35 / paperHeight;
@@ -269,10 +262,6 @@ void drawInterface() {
   rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
 
   //
-    stroke(0);
-  strokeWeight(0.1);
-  rect( ColorOneDivX, ColorOneDivY, ColorOneWidth, ColorOneHeight );
-
   //Line
   stroke(0);
   strokeWeight(3.5);
