@@ -8,10 +8,10 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
 //
-float LineEndOneX ;
-float LineEndOneY ;
-float LineEndTwoX ;
-float LineEndTwoY ;
+float ColorOneDivX ;
+float ColorOneDivY ;
+float ColorOneDiWidth ;
+float ColorOneDivHeight ;
 float LyricsBoxDivX ;
 float LyricsBoxDivY ;
 float LyricsBoxDivWidth ;
@@ -54,6 +54,10 @@ float ShuffleDivX ;
 float ShuffleDivY ;
 float ShuffleDivWidth ;
 float ShuffleDivHeight ;
+float LineEndOneX ;
+float LineEndOneY ;
+float LineEndTwoX ;
+float LineEndTwoY ;
 float SongPicOneDivX ;
 float SongPicOneDivY ;
 float SongPicOneDivWidth ;
@@ -114,6 +118,14 @@ void setup() {
   int paperWidth = 120;
   int paperHeight = 280;
   //
+  color Saffron = #D3AF37 ;
+  fill(Saffron);
+
+  ColorOneDivX = appWidth - appWidth ;
+  ColorOneDivY = appHeight - appHeight ;
+  ColorOneDiWidth = appWidth ;
+  ColorOneDivHeight = 125 / appHeight ;
+
   LyricsBoxDivX = appWidth * -10 / paperWidth;
   LyricsBoxDivY = appHeight * 35 / paperHeight;
   LyricsBoxDivWidth = appWidth * 140 / paperWidth;
@@ -219,31 +231,7 @@ void setup() {
   SongeTitleFiveDivY = appHeight * 250 / paperHeight;
   SongeTitleFiveDivWidth = appWidth * 120 / paperWidth;
   SongeTitleFiveDivHeight = appHeight * 20 / paperHeight;
-
-  /*
-float DivX = appWidth * ??? / paperWidth;
-   float DivY = appHeight * ??? / paperHeight;
-   float DivWidth = appWidth * ??? / paperWidth;
-   float DivHeight = appHeight * ??? / paperHeight;
-   */
-
   //
-  //DIVs
-  rect( LyricsBoxDivX, LyricsBoxDivY, LyricsBoxDivWidth, LyricsBoxDivHeight );
-  rect( TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
-  rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
-  rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
-  rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
-  rect( PausePlayDivX, PausePlayDivY, PausePlayDivWidth, PausePlayDivHeight );
-  rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
-  rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
-  rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
-  rect( SongPicOneDivX, SongPicOneDivY, SongPicOneDivWidth, SongPicOneDivHeight );
-  rect( SongeTitleOneDivX, SongeTitleOneDivY, SongeTitleOneDivWidth, SongeTitleOneDivHeight );
-  rect( SongPicTwoDivX, SongPicTwoDivY, SongPicTwoDivWidth, SongPicTwoDivHeight );
-  rect( SongeTitleTwoDivX, SongeTitleTwoDivY, SongeTitleTwoDivWidth, SongeTitleTwoDivHeight );
-  rect( SongPicThreeDivX, SongPicThreeDivY, SongPicThreeDivWidth, SongPicThreeDivHeight );
-  rect( SongeTitleThreeDivX, SongeTitleThreeDivY, SongeTitleThreeDivWidth, SongeTitleThreeDivHeight );
 }//End Setup
 //
 void draw() {
@@ -279,6 +267,11 @@ void drawInterface() {
   rect( SongeTitleFourDivX, SongeTitleFourDivY, SongeTitleFourDivWidth, SongeTitleFourDivHeight );
   rect( SongPicFiveDivX, SongPicFiveDivY, SongPicFiveDivWidth, SongPicFiveDivHeight );
   rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
+
+  //
+    stroke(0);
+  strokeWeight(0.1);
+  rect( ColorOneDivX, ColorOneDivY, ColorOneWidth, ColorOneHeight );
 
   //Line
   stroke(0);
