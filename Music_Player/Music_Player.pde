@@ -8,11 +8,12 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
 Minim minim;  //initates entire class
-int numberOfSongs = 3; //Best Practcie
+int numberOfSongs = 6; //Best Practcie
 int numberOfSoundEffect = 1;
 AudioPlayer[] playList = new AudioPlayer[ numberOfSongs ];
 AudioMetaData[] playListMetaData = new AudioMetaData[ numberOfSongs ];
 AudioPlayer[] soundEffects = new AudioPlayer[ numberOfSoundEffect ];
+PImage[] playListImages = new PImage[ numberOfSongs ];
 int currentSong = numberOfSongs - numberOfSongs; //ZERO, Math Property
 //
 float songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight;
@@ -123,87 +124,12 @@ void settings() {
 }
 void setup() {
   minim = new Minim(this);
-  String upArrow = "..";
-  String Open = "/";
-  String musicFolder = "Music";
-  String soundEffectsFolder = "Sound Effects";
-  String dependanciesFolder = "Dependencies";
-  //
-  String[] songName = new String[numberOfSongs];
-  songName[currentSong] = "Cycles" ;
-  currentSong++;
-  songName[currentSong] = "Eureka";
-  currentSong++;
-  songName[currentSong] = "Ghost_Walk";
-  currentSong=0;
-  //
-  String soundEffect1 = "Car_Door_Closing";
-  String fileExtension_mp3 = ".mp3";
-  //
-  String musicDirectory = upArrow + Open + dependanciesFolder + Open + musicFolder + Open ;
-  String soundEffectsDirectory = upArrow + Open + dependanciesFolder + Open + soundEffectsFolder + Open ;
-  String pathway;
-  for ( int i=0; i<numberOfSongs; i++ ) {
-    pathway = musicDirectory + songName[i] + fileExtension_mp3;
-    playList[ i ] = minim.loadFile( pathway );
-    playListMetaData[ i ] = playList[ i ].getMetaData();
-  }
-  pathway = soundEffectsDirectory + soundEffect1 + fileExtension_mp3; //Rewritting FILE
-  soundEffects[currentSong] = minim.loadFile( pathway );
-  //
-  for ( int i=0; i<numberOfSongs; i++ ) {
-    if ( playList[i]==null ) {
-      //See FILE or minim.loadFile
-      println("The Play List did not load properly");
-      printArray(playList);
-      exit();
-    }
-  }
-  if ( soundEffects[currentSong]==null ) {
-    println("The Sound Effects did not load properly");
-    printArray(soundEffects);
-    exit();
-  }
-  //
-  String x = "X";
-  //
-  fontSize1 = TitleDivHeight;
-  fontSize2 = SongeTitleOneDivHeight / 2;
-  //
-  String MyanmarText = "MyanmarText";
-  font = createFont(MyanmarText, fontSize1);
-  blackInk = #000000;
-  redInk = #FF1111;
-  whiteInk = #FFFFFF;
-  resetInk = whiteInk;
-  fill(redInk);
-  textAlign (LEFT, CENTER);
-  //
-  float constantDecrease = 0.99;
-  int iWhile=0;
-  textFont(font, fontSize1);
-  while ( textWidth(playListMetaData[currentSong].title()) > TitleDivWidth ) {
-    iWhile++;
-    if ( iWhile>10000 ) {
-      println("Infninte WHILE Loop");
-      exit();
-    }
-    fontSize1 *= constantDecrease;
-    textFont(font, fontSize1);
-  }
-  text( playListMetaData[currentSong].title(), TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
-  fill(blackInk);
-  //
-  //
-  //
-  //
-
   println(displayWidth, displayHeight);
   appWidth = DesignWidth;
   appHeight = DesignHeight;
   int paperWidth = 120;
   int paperHeight = 280;
-  //
+
   PictureBoxDivX = appWidth * -10 / paperWidth;
   PictureBoxDivY = appHeight * 35 / paperHeight;
   PictureBoxDivWidth = appWidth * 140 / paperWidth;
@@ -310,203 +236,398 @@ void setup() {
   SongeTitleFiveDivWidth = appWidth * 120 / paperWidth;
   SongeTitleFiveDivHeight = appHeight * 20 / paperHeight;
   //
-}//End Setup
-//
-void draw() {
-  background(#D3AF37);
-  scaleFactor = min(float(width) / appWidth, float(height) / appHeight);
-  pushMatrix();
-  translate((width - appWidth * scaleFactor) / 2, (height - appHeight * scaleFactor) / 2);
-  scale(scaleFactor);
-  drawInterface();
-  popMatrix();
-}
-
-void drawInterface() {
-  stroke(0);
-  strokeWeight(2);
-  fill(255);
-  rect( PictureBoxDivX, PictureBoxDivY, PictureBoxDivWidth, PictureBoxDivHeight );
-  rect( TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
-  fill(redInk);
-  text( playListMetaData[currentSong].title(), songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight );
-  fill(resetInk);
-  fill(blackInk);
-  text( playListMetaData[currentSong].title(), songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight );
-  fill(resetInk); //
-  rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
-  rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
-  rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
-  rect( PausePlayDivX, PausePlayDivY, PausePlayDivWidth, PausePlayDivHeight );
-  rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
-  rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
-  rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
-  rect( SongPicOneDivX, SongPicOneDivY, SongPicOneDivWidth, SongPicOneDivHeight );
-  rect( SongeTitleOneDivX, SongeTitleOneDivY, SongeTitleOneDivWidth, SongeTitleOneDivHeight );
-  rect( SongPicTwoDivX, SongPicTwoDivY, SongPicTwoDivWidth, SongPicTwoDivHeight );
-  rect( SongeTitleTwoDivX, SongeTitleTwoDivY, SongeTitleTwoDivWidth, SongeTitleTwoDivHeight );
-  rect( SongPicThreeDivX, SongPicThreeDivY, SongPicThreeDivWidth, SongPicThreeDivHeight );
-  rect( SongeTitleThreeDivX, SongeTitleThreeDivY, SongeTitleThreeDivWidth, SongeTitleThreeDivHeight );
-  rect( SongPicFourDivX, SongPicFourDivY, SongPicFourDivWidth, SongPicFourDivHeight );
-  rect( SongeTitleFourDivX, SongeTitleFourDivY, SongeTitleFourDivWidth, SongeTitleFourDivHeight );
-  rect( SongPicFiveDivX, SongPicFiveDivY, SongPicFiveDivWidth, SongPicFiveDivHeight );
-  rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
-
   //
-  //Line
-  stroke(0);
-  strokeWeight(3.5);
-  line( LineEndOneX, LineEndOneY, LineEndTwoX, LineEndTwoY );
+  String upArrow = "..";
+  String Open = "/";
+  String musicFolder = "Music";
+  String imagesFolder = "Images";
+  String soundEffectsFolder = "Sound Effects";
+  String dependanciesFolder = "Dependencies";
+  //
+  String[] songName = new String[numberOfSongs];
+  songName[0] = "Cycles";
+  songName[1] = "Eureka";
+  songName[2] = "Ghost_Walk";
+  songName[3] = "Beat_Your_Competition";
+  songName[4] = "Newsroom";
+  songName[5] = "Start_Your_Engines";
+  currentSong = 0;
+  //
+  String soundEffect1 = "Car_Door_Closing";
+  String fileExtension_mp3 = ".mp3";
+  String fileExtension_jpg = ".jpg";
+  //
+  String musicDirectory = upArrow + Open + dependanciesFolder + Open + musicFolder + Open;
+  String imageDirectory = upArrow + Open + dependanciesFolder + Open + imagesFolder + Open;
+  String soundEffectsDirectory = upArrow + Open + dependanciesFolder + Open + soundEffectsFolder + Open;
+  String pathway;
+  String imagePathway;
+  //
+  for (int i=0; i<numberOfSongs; i++) {
+    pathway = musicDirectory + songName[i] + fileExtension_mp3;
+    playList[i] = minim.loadFile(pathway);
+    playListMetaData[i] = playList[i].getMetaData();
+    //
+    imagePathway = imageDirectory + songName[i] + fileExtension_jpg;
+    playListImages[i] = loadImage(imagePathway);
+    //
+    if (playListImages[i] == null) {
+      playListImages[i] = createImage(100, 100, RGB);
+    }
+    pathway = soundEffectsDirectory + soundEffect1 + fileExtension_mp3;
+    soundEffects[0] = minim.loadFile(pathway);
+    //
+    for (int i=0; i<numberOfSongs; i++) {
+      if (playList[i] == null) {
+        println("The Play List did not load properly");
+        exit();
+      }
+    }
+    //
+    playList[currentSong].play();
+    //
+    fontSize1 = TitleDivHeight;
+    fontSize2 = SongeTitleOneDivHeight / 2;
+    //
+    String MyanmarText = "MyanmarText";
+    font = createFont(MyanmarText, fontSize1);
+    blackInk = #000000;
+    redInk = #FF1111;
+    whiteInk = #FFFFFF;
+    resetInk = whiteInk;
+    //
+    textAlign(LEFT, CENTER);
+    textFont(font, fontSize1);
+    //
+    float constantDecreaseLocal = 0.99;
+    int iWhileLocal = 0;
+    //
+    while (textWidth(playListMetaData[currentSong].title()) > TitleDivWidth) {
+      iWhileLocal++;
+      if (iWhileLocal > 10000) {
+        println("Infinite WHILE Loop Prevented");
+        exit();
+      }
+      fontSize1 *= constantDecreaseLocal;
+      textFont(font, fontSize1);
+    }
+  }//END SETUP
+  //
+  void draw() {
+    background(#D3AF37);
+    scaleFactor = min(float(width) / appWidth, float(height) / appHeight);
+    pushMatrix();
+    translate((width - appWidth * scaleFactor) / 2, (height - appHeight * scaleFactor) / 2);
+    scale(scaleFactor);
+    drawInterface();
+    popMatrix();
+  }
 
-  // Loop Symbol Left Semi Circle
-  radius = ( LoopDivWidth / 10 ) * 3 ;
-  rewindCenterX = LoopDivX + ( LoopDivWidth / 2 );
-  rewindCenterY = LoopDivY + ( LoopDivHeight / 2 );
-  radius = ( LoopDivWidth / 10 ) * 3 ;
-  loopCenterX = LoopDivX + ( LoopDivWidth / 2 );
-  loopCenterY = LoopDivY + ( LoopDivHeight / 2 );
-  float endX1 = loopCenterX - radius; // X-coordinate of the end point (cos(PI) * radius)
-  float endY1 = loopCenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
-  float endX2 = loopCenterX + radius;
-  float endY2 = loopCenterY ;
+  void drawInterface() {
+    //
+    stroke(0);
+    strokeWeight(2);
+    fill(255);
+    rect( TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
+    textAlign(CENTER, CENTER);
+    textFont(font, fontSize1);
+    fill(redInk);
+    text( playListMetaData[currentSong].title(), TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
+    fill(resetInk);
+    //
+    stroke(0);
+    strokeWeight(2);
+    fill(255);
+    rect( PictureBoxDivX, PictureBoxDivY, PictureBoxDivWidth, PictureBoxDivHeight );
+    rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
+    rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
+    rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
+    rect( PausePlayDivX, PausePlayDivY, PausePlayDivWidth, PausePlayDivHeight );
+    rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
+    rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
+    rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
+    rect( SongPicOneDivX, SongPicOneDivY, SongPicOneDivWidth, SongPicOneDivHeight );
+    rect( SongeTitleOneDivX, SongeTitleOneDivY, SongeTitleOneDivWidth, SongeTitleOneDivHeight );
+    rect( SongPicTwoDivX, SongPicTwoDivY, SongPicTwoDivWidth, SongPicTwoDivHeight );
+    rect( SongeTitleTwoDivX, SongeTitleTwoDivY, SongeTitleTwoDivWidth, SongeTitleTwoDivHeight );
+    rect( SongPicThreeDivX, SongPicThreeDivY, SongPicThreeDivWidth, SongPicThreeDivHeight );
+    rect( SongeTitleThreeDivX, SongeTitleThreeDivY, SongeTitleThreeDivWidth, SongeTitleThreeDivHeight );
+    rect( SongPicFourDivX, SongPicFourDivY, SongPicFourDivWidth, SongPicFourDivHeight );
+    rect( SongeTitleFourDivX, SongeTitleFourDivY, SongeTitleFourDivWidth, SongeTitleFourDivHeight );
+    rect( SongPicFiveDivX, SongPicFiveDivY, SongPicFiveDivWidth, SongPicFiveDivHeight );
+    rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
 
-  // Loop Symbol Right Semi Circle
-  stroke(0);
-  strokeWeight(5);
-  noFill();
-  arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 1.5, PI );
-  float arrowSize = radius * 0.333333333 ; // Size of the arrowhead
-  fill(0); // Black fill for the arrowhead
-  //Loop Symbol Arrow Heads
-  triangle(
-    endX1, endY1, // Base of the arrowhead (end of the semi-circle)
-    endX1 - arrowSize, endY1 - arrowSize / 2, // Left point of the arrowhead
-    endX1 - arrowSize, endY1 + arrowSize / 2  // Right point of the arrowhead
-    );
-  stroke(0);
-  strokeWeight(5);
-  noFill();
-  arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 4.5, 6.5 );
-  triangle(
-    endX2, endY2, // Base of the arrowhead (end of the semi-circle)
-    endX2 - arrowSize, endY2 - arrowSize, // Left point of the arrowhead
-    endX2 + arrowSize, endY2 - arrowSize // Right point of the arrowhead
-    );
+    //
+    //Line
+    stroke(0);
+    strokeWeight(3.5);
+    line( LineEndOneX, LineEndOneY, LineEndTwoX, LineEndTwoY );
 
-  // Rewind Symbol Circle
-  stroke(0);
-  strokeWeight(5);
-  float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
-  float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
-  float RewindRadius = 25 ;
-  arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -PI, 2); // From 0 to PI (half-circle)
-  float RewindEndX = RewindCenterX - RewindRadius;
-  float RewindEndY = RewindCenterY;
-  float RewindArrowSize = RewindRadius * 0.5 ;
-  // Rewind Symbol Arrow Head
-  fill(0);
-  triangle(
-    RewindEndX, RewindEndY,
-    RewindEndX - RewindArrowSize / 2, RewindEndY - RewindArrowSize,
-    RewindEndX + RewindArrowSize / 2, RewindEndY - RewindArrowSize
-    );
+    // Loop Symbol Left Semi Circle
+    radius = ( LoopDivWidth / 10 ) * 3 ;
+    rewindCenterX = LoopDivX + ( LoopDivWidth / 2 );
+    rewindCenterY = LoopDivY + ( LoopDivHeight / 2 );
+    radius = ( LoopDivWidth / 10 ) * 3 ;
+    loopCenterX = LoopDivX + ( LoopDivWidth / 2 );
+    loopCenterY = LoopDivY + ( LoopDivHeight / 2 );
+    float endX1 = loopCenterX - radius; // X-coordinate of the end point (cos(PI) * radius)
+    float endY1 = loopCenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
+    float endX2 = loopCenterX + radius;
+    float endY2 = loopCenterY ;
 
-  //Previous Symbol Left Arrow
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
-  triangle(
-    PreviousCenterX - (PreviousArrowWidth / 2), PreviousCenterY,
-    PreviousCenterX, PreviousCenterY - ( PreviousArrowWidth / 2 ),
-    PreviousCenterX, PreviousCenterY + ( PreviousArrowWidth / 2 )
-    );
-  //Previous Symbol Right Arrow
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
-  triangle(
-    PreviousCenterX, PreviousCenterY,
-    PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY - ( PreviousArrowWidth / 2 ),
-    PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY + ( PreviousArrowWidth / 2 )
-    );
+    // Loop Symbol Right Semi Circle
+    stroke(0);
+    strokeWeight(5);
+    noFill();
+    arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 1.5, PI );
+    float arrowSize = radius * 0.333333333 ; // Size of the arrowhead
+    fill(0); // Black fill for the arrowhead
+    //Loop Symbol Arrow Heads
+    triangle(
+      endX1, endY1, // Base of the arrowhead (end of the semi-circle)
+      endX1 - arrowSize, endY1 - arrowSize / 2, // Left point of the arrowhead
+      endX1 - arrowSize, endY1 + arrowSize / 2  // Right point of the arrowhead
+      );
+    stroke(0);
+    strokeWeight(5);
+    noFill();
+    arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 4.5, 6.5 );
+    triangle(
+      endX2, endY2, // Base of the arrowhead (end of the semi-circle)
+      endX2 - arrowSize, endY2 - arrowSize, // Left point of the arrowhead
+      endX2 + arrowSize, endY2 - arrowSize // Right point of the arrowhead
+      );
 
-  //Next Symbol Right Arrow
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
-  triangle(
-    NextCenterX + (NextArrowWidth / 2), NextCenterY,
-    NextCenterX, NextCenterY - ( NextArrowWidth / 2 ),
-    NextCenterX, NextCenterY + ( NextArrowWidth / 2 )
-    );
-  //Next Symbol Left Arrow
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
-  triangle(
-    NextCenterX, NextCenterY,
-    NextCenterX - (NextArrowWidth / 2), NextCenterY - ( NextArrowWidth / 2 ),
-    NextCenterX - (NextArrowWidth / 2), NextCenterY + ( NextArrowWidth / 2 )
-    );
+    // Rewind Symbol Circle
+    stroke(0);
+    strokeWeight(5);
+    float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
+    float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
+    float RewindRadius = 25 ;
+    arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -PI, 2); // From 0 to PI (half-circle)
+    float RewindEndX = RewindCenterX - RewindRadius;
+    float RewindEndY = RewindCenterY;
+    float RewindArrowSize = RewindRadius * 0.5 ;
+    // Rewind Symbol Arrow Head
+    fill(0);
+    triangle(
+      RewindEndX, RewindEndY,
+      RewindEndX - RewindArrowSize / 2, RewindEndY - RewindArrowSize,
+      RewindEndX + RewindArrowSize / 2, RewindEndY - RewindArrowSize
+      );
+    //Previous Symbol Left Arrow
+    stroke(0);
+    strokeWeight(2);
+    fill(0);
+    triangle(
+      PreviousCenterX - (PreviousArrowWidth / 2), PreviousCenterY,
+      PreviousCenterX, PreviousCenterY - ( PreviousArrowWidth / 2 ),
+      PreviousCenterX, PreviousCenterY + ( PreviousArrowWidth / 2 )
+      );
+    //Previous Symbol Right Arrow
+    stroke(0);
+    strokeWeight(2);
+    fill(0);
+    triangle(
+      PreviousCenterX, PreviousCenterY,
+      PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY - ( PreviousArrowWidth / 2 ),
+      PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY + ( PreviousArrowWidth / 2 )
+      );
 
-  //Fast Forward Symbol Arc
-  stroke(0);
-  strokeWeight(5);
-  noFill();
-  float FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the centerfloat FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the center
-  float FastForwardCenterY = FastForwardDivY + ( FastForwardDivHeight / 2 ); // Y-coordinate of the center
-  float FastForwardRadius = 25 ;
-  arc(FastForwardCenterX, FastForwardCenterY, FastForwardRadius * 2, FastForwardRadius * 2, -5.3, -0.5 ); // From 0 to PI (half-circle)
-  float FastForwardEndX = FastForwardCenterX + FastForwardRadius;
-  float FastForwardEndY = FastForwardCenterY;
-  float FastForwardArrowSize = FastForwardRadius * 0.5 ;
-  //Fast Forward Symbol Arrow Head
-  fill(0);
-  triangle(
-    FastForwardEndX, FastForwardEndY,
-    FastForwardEndX - FastForwardArrowSize / 2, FastForwardEndY - FastForwardArrowSize,
-    FastForwardEndX + FastForwardArrowSize / 2, FastForwardEndY - FastForwardArrowSize
-    );
+    //PLAY-PAUSE SYMBOL
+    //
+    //Play Symbol
+    stroke(0);
+    strokeWeight(2);
+    fill(0);
+    if ( playList[currentSong].isPlaying() ) {
+      // Show PAUSE icon (two vertical bars) while music outputs sound
+      float PauseRectOneDivX = PausePlayDivX + ( PausePlayDivWidth / 5 );
+      float PauseRectOneDivY = PausePlayDivY + ( PausePlayDivHeight / 5 );
+      float PauseRectOneDivWidth =  PausePlayDivWidth / 5 ;
+      float PauseRectOneDivHeight = PausePlayDivHeight * 0.6 ;
+      rect(PauseRectOneDivX, PauseRectOneDivY, PauseRectOneDivWidth, PauseRectOneDivHeight);
 
-  //Shuffle Symbol
-  stroke(0);
-  strokeWeight(5); // Match the weight style of other icons
-  noFill();
-  float ShuffleCenterX = ShuffleDivX + ( ShuffleDivWidth / 2 );
-  float ShuffleCenterY = ShuffleDivY + ( ShuffleDivHeight / 2 );
-  float hSpace = ShuffleDivWidth * 0.3;  // Half-width of the total icon span
-  float vSpace = ShuffleDivHeight * 0.2; // Vertical distance from center
-  float leftX  = ShuffleCenterX - hSpace;
-  float rightX = ShuffleCenterX + hSpace;
-  float topY   = ShuffleCenterY - vSpace;
-  float botY   = ShuffleCenterY + vSpace;
-  // 1. Top-Left to Bottom-Right Arrow (Backslash path)
-  bezier(leftX, topY, ShuffleCenterX - hSpace/2, topY, ShuffleCenterX + hSpace/2, botY, rightX, botY);
-  // 2. Bottom-Left to Top-Right Arrow (Forward-slash path)
-  bezier(leftX, botY, ShuffleCenterX - hSpace/2, botY, ShuffleCenterX + hSpace/2, topY, rightX, topY);
-  // 3. Arrow Heads
-  float shuffleArrowSize = ShuffleDivWidth * 0.12;
-  fill(0);
-  // Top-Right Arrow Head
-  pushMatrix();
-  translate(rightX, topY);
-  rotate(PI * 10); // Angles the arrow tip slightly upward
-  triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
-  popMatrix();
-  // Bottom-Right Arrow Head
-  pushMatrix();
-  translate(rightX, botY);
-  rotate(PI / 10); // Angles the arrow tip slightly downward
-  triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
-  popMatrix();
-  //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
-}
-//
-void mousePressed() {
-  //2D Music Symbol Changes: sending Boolean to draw()
-}//End mousePressed
-//
-void keyPressed() {
-}//End keyPressed
-//
-//End MAIN Program
+      float PauseRectTwoDivX = PausePlayDivX + ( PausePlayDivWidth * 0.6 );
+      float PauseRectTwoDivY = PausePlayDivY + ( PausePlayDivHeight / 5 );
+      float PauseRectTwoDivWidth =  PausePlayDivWidth / 5 ;
+      float PauseRectTwoDivHeight = PausePlayDivHeight * 0.6 ;
+      rect(PauseRectTwoDivX, PauseRectTwoDivY, PauseRectTwoDivWidth, PauseRectTwoDivHeight );
+    } else {
+      // Show PLAY icon (sideways triangle) when audio is suspended or stopped
+      float PlayPointOneDivX = PausePlayDivX + ( PausePlayDivWidth / 5 );
+      float PlayPointOneDivY = PausePlayDivY + ( PausePlayDivHeight / 5 );
+      float PlayPointTwoDivX = PausePlayDivX + ( PausePlayDivWidth / 5 );
+      float PlayPointTwoDivY = PausePlayDivY + ( PausePlayDivHeight * 0.8 );
+      float PlayPointThreeDivX = PausePlayDivX + ( PausePlayDivWidth * 0.8 );
+      float PlayPointThreeDivY = PausePlayDivY + ( PausePlayDivHeight / 2 );
+      triangle( PlayPointOneDivX, PlayPointOneDivY, PlayPointTwoDivX, PlayPointTwoDivY, PlayPointThreeDivX, PlayPointThreeDivY );
+    }
+
+    //Next Symbol Right Arrow
+    stroke(0);
+    strokeWeight(2);
+    fill(0);
+    triangle(
+      NextCenterX + (NextArrowWidth / 2), NextCenterY,
+      NextCenterX, NextCenterY - ( NextArrowWidth / 2 ),
+      NextCenterX, NextCenterY + ( NextArrowWidth / 2 )
+      );
+    //Next Symbol Left Arrow
+    stroke(0);
+    strokeWeight(2);
+    fill(0);
+    triangle(
+      NextCenterX, NextCenterY,
+      NextCenterX - (NextArrowWidth / 2), NextCenterY - ( NextArrowWidth / 2 ),
+      NextCenterX - (NextArrowWidth / 2), NextCenterY + ( NextArrowWidth / 2 )
+      );
+
+    //Fast Forward Symbol Arc
+    stroke(0);
+    strokeWeight(5);
+    noFill();
+    float FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the centerfloat FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the center
+    float FastForwardCenterY = FastForwardDivY + ( FastForwardDivHeight / 2 ); // Y-coordinate of the center
+    float FastForwardRadius = 25 ;
+    arc(FastForwardCenterX, FastForwardCenterY, FastForwardRadius * 2, FastForwardRadius * 2, -5.3, -0.5 ); // From 0 to PI (half-circle)
+    float FastForwardEndX = FastForwardCenterX + FastForwardRadius;
+    float FastForwardEndY = FastForwardCenterY;
+    float FastForwardArrowSize = FastForwardRadius * 0.5 ;
+    //Fast Forward Symbol Arrow Head
+    fill(0);
+    triangle(
+      FastForwardEndX, FastForwardEndY,
+      FastForwardEndX - FastForwardArrowSize / 2, FastForwardEndY - FastForwardArrowSize,
+      FastForwardEndX + FastForwardArrowSize / 2, FastForwardEndY - FastForwardArrowSize
+      );
+
+    //Shuffle Symbol
+    stroke(0);
+    strokeWeight(5); // Match the weight style of other icons
+    noFill();
+    float ShuffleCenterX = ShuffleDivX + ( ShuffleDivWidth / 2 );
+    float ShuffleCenterY = ShuffleDivY + ( ShuffleDivHeight / 2 );
+    float hSpace = ShuffleDivWidth * 0.3;  // Half-width of the total icon span
+    float vSpace = ShuffleDivHeight * 0.2; // Vertical distance from center
+    float leftX  = ShuffleCenterX - hSpace;
+    float rightX = ShuffleCenterX + hSpace;
+    float topY   = ShuffleCenterY - vSpace;
+    float botY   = ShuffleCenterY + vSpace;
+    // 1. Top-Left to Bottom-Right Arrow (Backslash path)
+    bezier(leftX, topY, ShuffleCenterX - hSpace/2, topY, ShuffleCenterX + hSpace/2, botY, rightX, botY);
+    // 2. Bottom-Left to Top-Right Arrow (Forward-slash path)
+    bezier(leftX, botY, ShuffleCenterX - hSpace/2, botY, ShuffleCenterX + hSpace/2, topY, rightX, topY);
+    // 3. Arrow Heads
+    float shuffleArrowSize = ShuffleDivWidth * 0.12;
+    fill(0);
+    // Top-Right Arrow Head
+    pushMatrix();
+    translate(rightX, topY);
+    rotate(PI * 10); // Angles the arrow tip slightly upward
+    triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
+    popMatrix();
+    // Bottom-Right Arrow Head
+    pushMatrix();
+    translate(rightX, botY);
+    rotate(PI / 10); // Angles the arrow tip slightly downward
+    triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
+    popMatrix();
+    //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
+  }
+  //
+  void mousePressed() {
+    //2D Music Symbol Changes: sending Boolean to draw()
+  }//End mousePressed
+  //
+  void keyPressed() {
+    if ( key=='P' || key=='p' ) playList[currentSong].loop(0);
+    //
+    if ( key=='O' || key=='o' ) { // Pause
+      //
+      if ( playList[currentSong].isPlaying() ) {
+        playList[currentSong].pause();
+      } else {
+        playList[currentSong].play();
+      }
+    }
+    if ( key=='E' | key=='e' ) {
+      if ( playList[currentSong].isPlaying() ) {
+        playList[currentSong].pause();
+      } else {
+        playList[currentSong].rewind();
+      }
+    }
+    if ( key=='L' || key=='l' ) playList[currentSong].loop(1); // Loop once
+    if ( key=='K' || key=='k' ) playList[currentSong].loop(); // Loop Infinitely
+    if ( key=='F' || key=='f' ) playList[currentSong].skip( 10000 ); // Fast Forward, Rewind, & Play Again //Parameter: milliseconds
+    if ( key=='R' || key=='r' ) playList[currentSong].skip( -10000 ); // Fast Reverse & Play //Parameter: negative numbers
+    if ( key=='M' || key=='m' ) { // MUTE
+      //
+      if ( playList[currentSong].isMuted() ) {
+        playList[currentSong].unmute();
+      } else {
+        playList[currentSong].mute();
+      }
+    }
+    if ( key==CODED || keyCode==ESC ) exit();
+    if ( key=='Q' || key=='q' ) exit();
+    if ( key=='N' || key=='n' ) {
+      if ( playList[currentSong].isPlaying() ) {
+        playList[currentSong].pause();
+        playList[currentSong].rewind();
+        //
+        if ( currentSong==numberOfSongs-1 ) {
+          currentSong = 0;
+        } else {
+          currentSong++;
+        }
+        playList[currentSong].play();
+      } else {
+        //
+        playList[currentSong].rewind();
+        //
+        if ( currentSong==numberOfSongs-1 ) {
+          currentSong = 0;
+        } else {
+          currentSong++;
+        }
+      }
+    }
+    if ( key=='B' || key=='b' ) {
+      if ( playList[currentSong].isPlaying() ) {
+        playList[currentSong].pause();
+        playList[currentSong].rewind();
+        //
+        if ( currentSong==0 ) {
+          currentSong = numberOfSongs-1;
+        } else {
+          currentSong--;
+        }
+        playList[currentSong].play();
+      } else {
+        //
+        playList[currentSong].rewind();
+        //
+        if ( currentSong==0 ) {
+          currentSong = numberOfSongs-1;
+        } else {
+          currentSong--;
+        }
+      }
+    }
+    //
+    if ( key=='S' || key=='s' ) currentSong = int(random(numberOfSongs));
+    //
+    if (key == 'P' || key == 'p') {
+      if (playList[currentSong].isPlaying()) {
+        playList[currentSong].pause();
+      } else if (playList[currentSong].position() == 0) {
+        playList[currentSong].play();
+      } else {
+        playList[currentSong].rewind();
+      }
+    }
+  }//End keyPressed
+  //
+  //End MAIN Program
