@@ -130,7 +130,7 @@ void setup() {
   String dependanciesFolder = "Dependencies";
   //
   String[] songName = new String[numberOfSongs];
-  songName[currentSong] = "Cycles"";
+  songName[currentSong] = "Cycles" ;
   currentSong++;
   songName[currentSong] = "Eureka";
   currentSong++;
