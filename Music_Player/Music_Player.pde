@@ -16,7 +16,7 @@ AudioPlayer[] soundEffects = new AudioPlayer[ numberOfSoundEffect ];
 int currentSong = numberOfSongs - numberOfSongs; //ZERO, Math Property
 //
 float songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight;
-color purpleInk, resetInk;
+color redInk, resetInk, blackInk, whiteInk;
 float constantDecrease;
 int iWhile;
 float fontSize1, fontSize2, fontSize3;
@@ -124,7 +124,7 @@ void settings() {
 void setup() {
   minim = new Minim(this);
   String upArrow = "..";
-  String open = "/";
+  String Open = "/";
   String musicFolder = "Music";
   String soundEffectsFolder = "Sound Effects";
   String dependanciesFolder = "Dependencies";
@@ -140,28 +140,26 @@ void setup() {
   String soundEffect1 = "Car_Door_Closing";
   String fileExtension_mp3 = ".mp3";
   //
-  String musicDirectory = upArrow + open + dependanciesFolder + open + musicFolder + open ; //Concatenation
-  String soundEffectsDirectory = upArrow + open + dependanciesFolder + open + soundEffectsFolder + open ; //Concatenation
+  String musicDirectory = upArrow + Open + dependanciesFolder + Open + musicFolder + Open ;
+  String soundEffectsDirectory = upArrow + Open + dependanciesFolder + Open + soundEffectsFolder + Open ;
   String pathway;
   for ( int i=0; i<numberOfSongs; i++ ) {
-    //CAUTION: removed ReadMe.txt
-    pathway = musicDirectory + songName[i] + fileExtension_mp3; //TO BE Rewritten and deleted once file is LOADED
-    playList[ i ] = minim.loadFile( pathway ); //ERROR: Verify Spelling & Library installed, Sketch / Import Library
+    pathway = musicDirectory + songName[i] + fileExtension_mp3;
+    playList[ i ] = minim.loadFile( pathway );
     playListMetaData[ i ] = playList[ i ].getMetaData();
-    //CAUTION: not currentSong var
   }
   pathway = soundEffectsDirectory + soundEffect1 + fileExtension_mp3; //Rewritting FILE
   soundEffects[currentSong] = minim.loadFile( pathway );
   //
   for ( int i=0; i<numberOfSongs; i++ ) {
-    if ( playList[i]==null ) { //ERROR, play list is NULL
+    if ( playList[i]==null ) {
       //See FILE or minim.loadFile
       println("The Play List did not load properly");
       printArray(playList);
       exit();
     }
   }
-  if ( soundEffects[currentSong]==null ) { //ERROR, play list is NULL
+  if ( soundEffects[currentSong]==null ) {
     println("The Sound Effects did not load properly");
     printArray(soundEffects);
     exit();
@@ -169,13 +167,32 @@ void setup() {
   //
   String x = "X";
   //
-  fontSize1 = TitleDivHeight; //1:1 Font Height to rectHeight
-  fontSize2 = SongTitleOneHeight / 2;
+  fontSize1 = TitleDivHeight;
+  fontSize2 = SongeTitleOneDivHeight / 2;
   //
-  String MyanmarText = "MyanmarText"; 
+  String MyanmarText = "MyanmarText";
   font = createFont(MyanmarText, fontSize1);
+  blackInk = #000000;
+  redInk = #FF1111;
+  whiteInk = #FFFFFF;
+  resetInk = whiteInk;
+  fill(redInk);
+  textAlign (LEFT, CENTER);
   //
-  //
+  float constantDecrease = 0.99;
+  int iWhile=0;
+  textFont(font, fontSize1);
+  while ( textWidth(playListMetaData[currentSong].title()) > TitleDivWidth ) {
+    iWhile++;
+    if ( iWhile>10000 ) {
+      println("Infninte WHILE Loop");
+      exit();
+    }
+    fontSize1 *= constantDecrease;
+    textFont(font, fontSize1);
+  }
+  text( playListMetaData[currentSong].title(), TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
+  fill(blackInk);
   //
   //
   //
@@ -311,6 +328,12 @@ void drawInterface() {
   fill(255);
   rect( PictureBoxDivX, PictureBoxDivY, PictureBoxDivWidth, PictureBoxDivHeight );
   rect( TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
+  fill(redInk);
+  text( playListMetaData[currentSong].title(), songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight );
+  fill(resetInk);
+  fill(blackInk);
+  text( playListMetaData[currentSong].title(), songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight );
+  fill(resetInk); //
   rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
   rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
   rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
