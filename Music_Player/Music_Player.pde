@@ -277,7 +277,7 @@ void setup() {
   pathway = soundEffectsDirectory + soundEffect1 + fileExtension_mp3;
   soundEffects[0] = minim.loadFile(pathway);
   //
-  for (int i=0; i<numberOfSongs; i++) { 
+  for (int i=0; i<numberOfSongs; i++) {
     if (playList[i] == null) {
       println("The Play List did not load properly");
       exit();
@@ -356,6 +356,88 @@ void drawInterface() {
     image(img, imgX, imgY, renderWidth, renderHeight);
   }
   //
+  for (int row = 1; row <= 5; row++) {
+    int nextSongIdx = (currentSong + row) % numberOfSongs;
+    float picX, picY, picW, picH;
+    float titleX, titleY, titleW, titleH;
+    if (row == 1) {
+      picX = SongPicOneDivX;
+      picY = SongPicOneDivY;
+      picW = SongPicOneDivWidth;
+      picH = SongPicOneDivHeight;
+      titleX = SongeTitleOneDivX;
+      titleY = SongeTitleOneDivY;
+      titleW = SongeTitleOneDivWidth;
+      titleH = SongeTitleOneDivHeight;
+    } else if (row == 2) {
+      picX = SongPicTwoDivX;
+      picY = SongPicTwoDivY;
+      picW = SongPicTwoDivWidth;
+      picH = SongPicTwoDivHeight;
+      titleX = SongeTitleTwoDivX;
+      titleY = SongeTitleTwoDivY;
+      titleW = SongeTitleTwoDivWidth;
+      titleH = SongeTitleTwoDivHeight;
+    } else if (row == 3) {
+      picX = SongPicThreeDivX;
+      picY = SongPicThreeDivY;
+      picW = SongPicThreeDivWidth;
+      picH = SongPicThreeDivHeight;
+      titleX = SongeTitleThreeDivX;
+      titleY = SongeTitleThreeDivY;
+      titleW = SongeTitleThreeDivWidth;
+      titleH = SongeTitleThreeDivHeight;
+    } else if (row == 4) {
+      picX = SongPicFourDivX;
+      picY = SongPicFourDivY;
+      picW = SongPicFourDivWidth;
+      picH = SongPicFourDivHeight;
+      titleX = SongeTitleFourDivX;
+      titleY = SongeTitleFourDivY;
+      titleW = SongeTitleFourDivWidth;
+      titleH = SongeTitleFourDivHeight;
+    } else { 
+      picX = SongPicFiveDivX;
+      picY = SongPicFiveDivY;
+      picW = SongPicFiveDivWidth;
+      picH = SongPicFiveDivHeight;
+      titleX = SongeTitleFiveDivX;
+      titleY = SongeTitleFiveDivY;
+      titleW = SongeTitleFiveDivWidth;
+      titleH = SongeTitleFiveDivHeight;
+    }
+    stroke(0);
+    strokeWeight(2);
+    fill(255);
+    rect(titleX, titleY, titleW, titleH);
+    textAlign(LEFT, CENTER);
+    textFont(font, fontSize2);
+    fill(blackInk);
+    text(playListMetaData[nextSongIdx].title(), titleX + 5, titleY, titleW - 5, titleH);
+    fill(resetInk);
+    //
+    stroke(0);
+    strokeWeight(2);
+    fill(255);
+    rect(picX, picY, picW, picH);
+    PImage rowImg = playListImages[nextSongIdx];
+    if (rowImg != null && rowImg.width > 0 && rowImg.height > 0) {
+      float imgRatio = (float) rowImg.width / rowImg.height;
+      float divRatio = picW / picH;
+      float renderWidth, renderHeight;
+      if (imgRatio > divRatio) {
+        renderWidth = picW;
+        renderHeight = picW / imgRatio;
+      } else {
+        renderHeight = picH;
+        renderWidth = picH * imgRatio;
+      }
+      float imgX = picX + (picW - renderWidth) / 2;
+      float imgY = picY + (picH - renderHeight) / 2;
+      image(rowImg, imgX, imgY, renderWidth, renderHeight);
+    }
+  }
+  //
   stroke(0);
   strokeWeight(2);
   fill(255);
@@ -366,17 +448,6 @@ void drawInterface() {
   rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
   rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
   rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
-  rect( SongPicOneDivX, SongPicOneDivY, SongPicOneDivWidth, SongPicOneDivHeight );
-  rect( SongeTitleOneDivX, SongeTitleOneDivY, SongeTitleOneDivWidth, SongeTitleOneDivHeight );
-  rect( SongPicTwoDivX, SongPicTwoDivY, SongPicTwoDivWidth, SongPicTwoDivHeight );
-  rect( SongeTitleTwoDivX, SongeTitleTwoDivY, SongeTitleTwoDivWidth, SongeTitleTwoDivHeight );
-  rect( SongPicThreeDivX, SongPicThreeDivY, SongPicThreeDivWidth, SongPicThreeDivHeight );
-  rect( SongeTitleThreeDivX, SongeTitleThreeDivY, SongeTitleThreeDivWidth, SongeTitleThreeDivHeight );
-  rect( SongPicFourDivX, SongPicFourDivY, SongPicFourDivWidth, SongPicFourDivHeight );
-  rect( SongeTitleFourDivX, SongeTitleFourDivY, SongeTitleFourDivWidth, SongeTitleFourDivHeight );
-  rect( SongPicFiveDivX, SongPicFiveDivY, SongPicFiveDivWidth, SongPicFiveDivHeight );
-  rect( SongeTitleFiveDivX, SongeTitleFiveDivY, SongeTitleFiveDivWidth, SongeTitleFiveDivHeight );
-
   //
   //Line
   stroke(0);
