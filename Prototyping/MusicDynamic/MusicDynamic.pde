@@ -47,7 +47,7 @@ void setup() {
   //Music Loading
   minim = new Minim(this);
   String upArrow = "..";
-  String open = "/";
+  String Open = "/";
   String musicFolder = "Music";
   String soundEffectsFolder = "Sound Effects";
   String dependanciesFolder = "Dependencies";
@@ -69,8 +69,8 @@ void setup() {
   String fileExtension_mp3 = ".mp3";
   //
   //
-  String musicDirectory = upArrow + open + upArrow + open + dependanciesFolder + open + musicFolder + open ; //Concatenation
-  String soundEffectsDirectory = upArrow + open + upArrow + open + dependanciesFolder + open + soundEffectsFolder + open ; //Concatenation
+  String musicDirectory = upArrow + Open + upArrow + Open + dependanciesFolder + Open + musicFolder + Open ; //Concatenation
+  String soundEffectsDirectory = upArrow + Open + upArrow + Open + dependanciesFolder + Open + soundEffectsFolder + Open ; //Concatenation
   String pathway;
   for ( int i=0; i<numberOfSongs; i++) {
     pathway = musicDirectory + songName[i] + fileExtension_mp3; //TO BE Rewritten and deleted once file is LOADED
@@ -193,14 +193,12 @@ void mousePressed() {
    - Play-Pause-Stop
    - Auto Play
    - Random Song
-   */
-  //if ( key=='P' || key=='p' ) playList[currentSong].play(); //Simple Play, no double tap possible
-  //
-  if ( key=='P' || key=='p' ) playList[currentSong].loop(0); //Simple Play, double tap possible
+   //if ( key=='P' || key=='p' ) playList[currentSong].play(); //Simple Play, no double tap possible
+   //
+   if ( key=='P' || key=='p' ) playList[currentSong].loop(0); //Simple Play, double tap possible
   /* Note: double tap is automatic rewind, no pause
    Symbol is two triangles
    This changes what the button might become after it is pressed
-   */
   if ( key=='O' || key=='o' ) { // Pause
     //
     if ( playList[currentSong].isPlaying() ) {
@@ -428,15 +426,15 @@ void keyPressed() {
   }
   if ( key=='Y' || key=='y' ) currentSong = int(random(numberOfSongs)); //random(0, numberOfSongs)
   //
-  //if ( key=='S' || key=='s' ) ; // Shuffle - PLAY (Random)
-  //Note: will randomize the currentSong number
-  //Caution: random() is used very often
-  //Question: how does truncating decimals affect returning random() floats
+    //if ( key=='S' || key=='s' ) ; // Shuffle - PLAY (Random)
+    //Note: will randomize the currentSong number
+    //Caution: random() is used very often
+    //Question: how does truncating decimals affect returning random() floats
   /*
   if ( key=='' || key=='' ) ; // Play-Pause-STOP //Advanced, beyond single buttons
    - need to have basic GUI complete first
    */
-  //
+    //
 }//End Key Pressed
 //
 //End MAIN Program
