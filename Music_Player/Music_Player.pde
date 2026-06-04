@@ -7,15 +7,25 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
+Minim minim;  //initates entire class
+int numberOfSongs = 3; //Best Practcie
+int numberOfSoundEffect = 1;
+AudioPlayer[] playList = new AudioPlayer[ numberOfSongs ];
+AudioMetaData[] playListMetaData = new AudioMetaData[ numberOfSongs ];
+AudioPlayer[] soundEffects = new AudioPlayer[ numberOfSoundEffect ];
+int currentSong = numberOfSongs - numberOfSongs; //ZERO, Math Property
 //
-float ColorOneDivX ;
-float ColorOneDivY ;
-float ColorOneDivWidth ;
-float ColorOneDivHeight ;
-float LyricsBoxDivX ;
-float LyricsBoxDivY ;
-float LyricsBoxDivWidth ;
-float LyricsBoxDivHeight ;
+float songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight;
+color purpleInk, resetInk;
+float constantDecrease;
+int iWhile;
+float fontSize1, fontSize2, fontSize3;
+PFont font;
+//
+float PictureBoxDivX ;
+float PictureBoxDivY ;
+float PictureBoxDivWidth ;
+float PictureBoxDivHeight ;
 float TitleDivX ;
 float TitleDivY ;
 float TitleDivWidth ;
@@ -112,17 +122,75 @@ void settings() {
   fullScreen();
 }
 void setup() {
+  minim = new Minim(this);
+  String upArrow = "..";
+  String open = "/";
+  String musicFolder = "Music";
+  String soundEffectsFolder = "Sound Effects";
+  String dependanciesFolder = "Dependencies";
+  //
+  String[] songName = new String[numberOfSongs];
+  songName[currentSong] = "Cycles"";
+  currentSong++;
+  songName[currentSong] = "Eureka";
+  currentSong++;
+  songName[currentSong] = "Ghost_Walk";
+  currentSong=0;
+  //
+  String soundEffect1 = "Car_Door_Closing";
+  String fileExtension_mp3 = ".mp3";
+  //
+  String musicDirectory = upArrow + open + dependanciesFolder + open + musicFolder + open ; //Concatenation
+  String soundEffectsDirectory = upArrow + open + dependanciesFolder + open + soundEffectsFolder + open ; //Concatenation
+  String pathway;
+  for ( int i=0; i<numberOfSongs; i++ ) {
+    //CAUTION: removed ReadMe.txt
+    pathway = musicDirectory + songName[i] + fileExtension_mp3; //TO BE Rewritten and deleted once file is LOADED
+    playList[ i ] = minim.loadFile( pathway ); //ERROR: Verify Spelling & Library installed, Sketch / Import Library
+    playListMetaData[ i ] = playList[ i ].getMetaData();
+    //CAUTION: not currentSong var
+  }
+  pathway = soundEffectsDirectory + soundEffect1 + fileExtension_mp3; //Rewritting FILE
+  soundEffects[currentSong] = minim.loadFile( pathway );
+  //
+  for ( int i=0; i<numberOfSongs; i++ ) {
+    if ( playList[i]==null ) { //ERROR, play list is NULL
+      //See FILE or minim.loadFile
+      println("The Play List did not load properly");
+      printArray(playList);
+      exit();
+    }
+  }
+  if ( soundEffects[currentSong]==null ) { //ERROR, play list is NULL
+    println("The Sound Effects did not load properly");
+    printArray(soundEffects);
+    exit();
+  }
+  //
+  String x = "X";
+  //
+  fontSize1 = TitleDivHeight; //1:1 Font Height to rectHeight
+  fontSize2 = SongTitleOneHeight / 2;
+  //
+  String MyanmarText = "MyanmarText"; 
+  font = createFont(MyanmarText, fontSize1);
+  //
+  //
+  //
+  //
+  //
+  //
+
   println(displayWidth, displayHeight);
   appWidth = DesignWidth;
   appHeight = DesignHeight;
   int paperWidth = 120;
   int paperHeight = 280;
   //
-
-  LyricsBoxDivX = appWidth * -10 / paperWidth;
-  LyricsBoxDivY = appHeight * 35 / paperHeight;
-  LyricsBoxDivWidth = appWidth * 140 / paperWidth;
-  LyricsBoxDivHeight = appHeight * 60 / paperHeight;
+  PictureBoxDivX = appWidth * -10 / paperWidth;
+  PictureBoxDivY = appHeight * 35 / paperHeight;
+  PictureBoxDivWidth = appWidth * 140 / paperWidth;
+  PictureBoxDivHeight = appHeight * 60 / paperHeight;
 
   TitleDivX = appWidth * -10 / paperWidth;
   TitleDivY = appHeight * 10 / paperHeight;
@@ -228,7 +296,7 @@ void setup() {
 }//End Setup
 //
 void draw() {
-  background(255);
+  background(#D3AF37);
   scaleFactor = min(float(width) / appWidth, float(height) / appHeight);
   pushMatrix();
   translate((width - appWidth * scaleFactor) / 2, (height - appHeight * scaleFactor) / 2);
@@ -240,8 +308,8 @@ void draw() {
 void drawInterface() {
   stroke(0);
   strokeWeight(2);
-  noFill();
-  rect( LyricsBoxDivX, LyricsBoxDivY, LyricsBoxDivWidth, LyricsBoxDivHeight );
+  fill(255);
+  rect( PictureBoxDivX, PictureBoxDivY, PictureBoxDivWidth, PictureBoxDivHeight );
   rect( TitleDivX, TitleDivY, TitleDivWidth, TitleDivHeight );
   rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
   rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
