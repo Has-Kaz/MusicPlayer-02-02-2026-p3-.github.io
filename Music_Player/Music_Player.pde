@@ -16,7 +16,7 @@ PImage[] playListImages = new PImage[ numberOfSongs ];
 int currentSong = numberOfSongs - numberOfSongs;
 //
 float songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight;
-color redInk, resetInk, blackInk, whiteInk, activeClickColor;
+color redInk, resetInk, blackInk, whiteInk, activeClickColor, leftCircleColor, rightCircleColor;
 float constantDecrease;
 int iWhile;
 float fontSize1, fontSize2;
@@ -120,6 +120,10 @@ float QuitDivHeight ;
 int appWidth;
 int appHeight;
 float scaleFactor;
+float leftCircleX, leftCircleY, leftCircleRadius;
+float rightCircleX, rightCircleY, rightCircleRadius;
+float leftCircleOffsetX, leftCircleOffsetY;
+float rightCircleOffsetX, rightCircleOffsetY;
 final int DesignWidth = 470;
 final int DesignHeight = 1000;
 void settings() {
@@ -238,12 +242,31 @@ void setup() {
   SongTitleFiveDivY = appHeight * 250 / paperHeight;
   SongTitleFiveDivWidth = appWidth * 120 / paperWidth;
   SongTitleFiveDivHeight = appHeight * 20 / paperHeight;
-
+  //
+  //
   QuitDivX = appWidth * 135 / paperWidth;
   QuitDivY = appHeight * 10 / paperHeight;
   QuitDivWidth = appWidth * 15 / paperWidth;
   QuitDivHeight = appHeight * 15 / paperHeight;
 
+  leftCircleColor  = color(#780606);
+  rightCircleColor = color(#d1001f);
+  leftCircleRadius  = 475.0;
+  rightCircleRadius = 520.0;
+  leftCircleOffsetX  = 0.0;
+  leftCircleOffsetY  = 0.0;
+  rightCircleOffsetX = 0.0;
+  rightCircleOffsetY = 0.0;
+  float baseLeftGridX  = -10.0 + leftCircleOffsetX;
+  float baseLeftGridY  = 270.0 + leftCircleOffsetY;
+  float baseRightGridX = 130.0 + rightCircleOffsetX;
+  float baseRightGridY = 270.0 + rightCircleOffsetY;
+  leftCircleX = appWidth * baseLeftGridX / paperWidth;
+  leftCircleY = appHeight * baseLeftGridY / paperHeight;
+  rightCircleX = appWidth * baseRightGridX / paperWidth;
+  rightCircleY = appHeight * baseRightGridY / paperHeight;
+  //
+  //
   activeClickColor = #000000;
   //
   //
@@ -302,7 +325,7 @@ void setup() {
   String MyanmarText = "Myanmar Text Bold";
   font = createFont(MyanmarText, fontSize1);
   blackInk = #000000;
-  redInk = #FF1111;
+  redInk = #FF0000;
   whiteInk = #FFFFFF;
   resetInk = whiteInk;
   //
@@ -324,7 +347,7 @@ void setup() {
 }//END SETUP
 //
 void draw() {
-  background(#D3AF37);
+  background(#454545);
   scaleFactor = min(float(width) / appWidth, float(height) / appHeight);
   pushMatrix();
   translate((width - appWidth * scaleFactor) / 2, (height - appHeight * scaleFactor) / 2);
@@ -347,6 +370,15 @@ void drawInterface() {
   //
   float localMouseX = (mouseX - (width - appWidth * scaleFactor) / 2) / scaleFactor;
   float localMouseY = (mouseY - (height - appHeight * scaleFactor) / 2) / scaleFactor;
+  //
+  //
+  stroke(0);
+  strokeWeight(0);
+  fill(leftCircleColor);
+  ellipse(leftCircleX, leftCircleY, leftCircleRadius * 2, leftCircleRadius * 2);
+  fill(rightCircleColor);
+  ellipse(rightCircleX, rightCircleY, rightCircleRadius * 2, rightCircleRadius * 2);
+  //
   //
   stroke(0);
   strokeWeight(2);
