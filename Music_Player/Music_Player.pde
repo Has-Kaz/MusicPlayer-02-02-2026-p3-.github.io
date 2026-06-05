@@ -73,42 +73,42 @@ float SongPicOneDivX ;
 float SongPicOneDivY ;
 float SongPicOneDivWidth ;
 float SongPicOneDivHeight ;
-float SongeTitleOneDivX ;
-float SongeTitleOneDivY ;
-float SongeTitleOneDivWidth ;
-float SongeTitleOneDivHeight ;
+float SongTitleOneDivX ;
+float SongTitleOneDivY ;
+float SongTitleOneDivWidth ;
+float SongTitleOneDivHeight ;
 float SongPicTwoDivX ;
 float SongPicTwoDivY ;
 float SongPicTwoDivWidth ;
 float SongPicTwoDivHeight ;
-float SongeTitleTwoDivX ;
-float SongeTitleTwoDivY ;
-float SongeTitleTwoDivWidth ;
-float SongeTitleTwoDivHeight ;
+float SongTitleTwoDivX ;
+float SongTitleTwoDivY ;
+float SongTitleTwoDivWidth ;
+float SongTitleTwoDivHeight ;
 float SongPicThreeDivX ;
 float SongPicThreeDivY ;
 float SongPicThreeDivWidth ;
 float SongPicThreeDivHeight ;
-float SongeTitleThreeDivX ;
-float SongeTitleThreeDivY ;
-float SongeTitleThreeDivWidth ;
-float SongeTitleThreeDivHeight ;
+float SongTitleThreeDivX ;
+float SongTitleThreeDivY ;
+float SongTitleThreeDivWidth ;
+float SongTitleThreeDivHeight ;
 float SongPicFourDivX ;
 float SongPicFourDivY ;
 float SongPicFourDivWidth ;
 float SongPicFourDivHeight ;
-float SongeTitleFourDivX ;
-float SongeTitleFourDivY ;
-float SongeTitleFourDivWidth ;
-float SongeTitleFourDivHeight ;
+float SongTitleFourDivX ;
+float SongTitleFourDivY ;
+float SongTitleFourDivWidth ;
+float SongTitleFourDivHeight ;
 float SongPicFiveDivX ;
 float SongPicFiveDivY ;
 float SongPicFiveDivWidth ;
 float SongPicFiveDivHeight ;
-float SongeTitleFiveDivX ;
-float SongeTitleFiveDivY ;
-float SongeTitleFiveDivWidth ;
-float SongeTitleFiveDivHeight ;
+float SongTitleFiveDivX ;
+float SongTitleFiveDivY ;
+float SongTitleFiveDivWidth ;
+float SongTitleFiveDivHeight ;
 float radius ;
 float loopCenterX ;
 float loopCenterY ;
@@ -195,50 +195,50 @@ void setup() {
   SongPicOneDivWidth = appWidth * 20 / paperWidth;
   SongPicOneDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleOneDivX = appWidth * 10 / paperWidth;
-  SongeTitleOneDivY = appHeight * 130 / paperHeight;
-  SongeTitleOneDivWidth = appWidth * 120 / paperWidth;
-  SongeTitleOneDivHeight = appHeight * 20 / paperHeight;
+  SongTitleOneDivX = appWidth * 10 / paperWidth;
+  SongTitleOneDivY = appHeight * 130 / paperHeight;
+  SongTitleOneDivWidth = appWidth * 120 / paperWidth;
+  SongTitleOneDivHeight = appHeight * 20 / paperHeight;
 
   SongPicTwoDivX = appWidth * -10 / paperWidth;
   SongPicTwoDivY = appHeight * 160 / paperHeight;
   SongPicTwoDivWidth = appWidth * 20 / paperWidth;
   SongPicTwoDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleTwoDivX = appWidth * 10 / paperWidth;
-  SongeTitleTwoDivY = appHeight * 160 / paperHeight;
-  SongeTitleTwoDivWidth = appWidth * 120 / paperWidth;
-  SongeTitleTwoDivHeight = appHeight * 20 / paperHeight;
+  SongTitleTwoDivX = appWidth * 10 / paperWidth;
+  SongTitleTwoDivY = appHeight * 160 / paperHeight;
+  SongTitleTwoDivWidth = appWidth * 120 / paperWidth;
+  SongTitleTwoDivHeight = appHeight * 20 / paperHeight;
 
   SongPicThreeDivX = appWidth * -10 / paperWidth;
   SongPicThreeDivY = appHeight * 190 / paperHeight;
   SongPicThreeDivWidth = appWidth * 20 / paperWidth;
   SongPicThreeDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleThreeDivX = appWidth * 10 / paperWidth;
-  SongeTitleThreeDivY = appHeight * 190 / paperHeight;
-  SongeTitleThreeDivWidth = appWidth * 120 / paperWidth;
-  SongeTitleThreeDivHeight = appHeight * 20 / paperHeight;
+  SongTitleThreeDivX = appWidth * 10 / paperWidth;
+  SongTitleThreeDivY = appHeight * 190 / paperHeight;
+  SongTitleThreeDivWidth = appWidth * 120 / paperWidth;
+  SongTitleThreeDivHeight = appHeight * 20 / paperHeight;
 
   SongPicFourDivX = appWidth * -10 / paperWidth;
   SongPicFourDivY = appHeight * 220 / paperHeight;
   SongPicFourDivWidth = appWidth * 20 / paperWidth;
   SongPicFourDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleFourDivX = appWidth * 10 / paperWidth;
-  SongeTitleFourDivY = appHeight * 220 / paperHeight;
-  SongeTitleFourDivWidth = appWidth * 120 / paperWidth;
-  SongeTitleFourDivHeight = appHeight * 20 / paperHeight;
+  SongTitleFourDivX = appWidth * 10 / paperWidth;
+  SongTitleFourDivY = appHeight * 220 / paperHeight;
+  SongTitleFourDivWidth = appWidth * 120 / paperWidth;
+  SongTitleFourDivHeight = appHeight * 20 / paperHeight;
 
   SongPicFiveDivX = appWidth * -10 / paperWidth;
   SongPicFiveDivY = appHeight * 250 / paperHeight;
   SongPicFiveDivWidth = appWidth * 20 / paperWidth;
   SongPicFiveDivHeight = appHeight * 20 / paperHeight;
 
-  SongeTitleFiveDivX = appWidth * 10 / paperWidth;
-  SongeTitleFiveDivY = appHeight * 250 / paperHeight;
-  SongeTitleFiveDivWidth = appWidth * 120 / paperWidth;
-  SongeTitleFiveDivHeight = appHeight * 20 / paperHeight;
+  SongTitleFiveDivX = appWidth * 10 / paperWidth;
+  SongTitleFiveDivY = appHeight * 250 / paperHeight;
+  SongTitleFiveDivWidth = appWidth * 120 / paperWidth;
+  SongTitleFiveDivHeight = appHeight * 20 / paperHeight;
 
   QuitDivX = appWidth * 135 / paperWidth;
   QuitDivY = appHeight * 10 / paperHeight;
@@ -296,9 +296,9 @@ void setup() {
   playList[currentSong].play();
   //
   fontSize1 = TitleDivHeight / 1.5;
-  fontSize2 = SongeTitleOneDivHeight / 2;
+  fontSize2 = SongTitleOneDivHeight / 2;
   //
-  String MyanmarText = "MyanmarText";
+  String MyanmarText = "Myanmar Text Bold";
   font = createFont(MyanmarText, fontSize1);
   blackInk = #000000;
   redInk = #FF1111;
@@ -388,46 +388,46 @@ void drawInterface() {
       picY = SongPicOneDivY;
       picW = SongPicOneDivWidth;
       picH = SongPicOneDivHeight;
-      titleX = SongeTitleOneDivX;
-      titleY = SongeTitleOneDivY;
-      titleW = SongeTitleOneDivWidth;
-      titleH = SongeTitleOneDivHeight;
+      titleX = SongTitleOneDivX;
+      titleY = SongTitleOneDivY;
+      titleW = SongTitleOneDivWidth;
+      titleH = SongTitleOneDivHeight;
     } else if (row == 2) {
       picX = SongPicTwoDivX;
       picY = SongPicTwoDivY;
       picW = SongPicTwoDivWidth;
       picH = SongPicTwoDivHeight;
-      titleX = SongeTitleTwoDivX;
-      titleY = SongeTitleTwoDivY;
-      titleW = SongeTitleTwoDivWidth;
-      titleH = SongeTitleTwoDivHeight;
+      titleX = SongTitleTwoDivX;
+      titleY = SongTitleTwoDivY;
+      titleW = SongTitleTwoDivWidth;
+      titleH = SongTitleTwoDivHeight;
     } else if (row == 3) {
       picX = SongPicThreeDivX;
       picY = SongPicThreeDivY;
       picW = SongPicThreeDivWidth;
       picH = SongPicThreeDivHeight;
-      titleX = SongeTitleThreeDivX;
-      titleY = SongeTitleThreeDivY;
-      titleW = SongeTitleThreeDivWidth;
-      titleH = SongeTitleThreeDivHeight;
+      titleX = SongTitleThreeDivX;
+      titleY = SongTitleThreeDivY;
+      titleW = SongTitleThreeDivWidth;
+      titleH = SongTitleThreeDivHeight;
     } else if (row == 4) {
       picX = SongPicFourDivX;
       picY = SongPicFourDivY;
       picW = SongPicFourDivWidth;
       picH = SongPicFourDivHeight;
-      titleX = SongeTitleFourDivX;
-      titleY = SongeTitleFourDivY;
-      titleW = SongeTitleFourDivWidth;
-      titleH = SongeTitleFourDivHeight;
+      titleX = SongTitleFourDivX;
+      titleY = SongTitleFourDivY;
+      titleW = SongTitleFourDivWidth;
+      titleH = SongTitleFourDivHeight;
     } else {
       picX = SongPicFiveDivX;
       picY = SongPicFiveDivY;
       picW = SongPicFiveDivWidth;
       picH = SongPicFiveDivHeight;
-      titleX = SongeTitleFiveDivX;
-      titleY = SongeTitleFiveDivY;
-      titleW = SongeTitleFiveDivWidth;
-      titleH = SongeTitleFiveDivHeight;
+      titleX = SongTitleFiveDivX;
+      titleY = SongTitleFiveDivY;
+      titleW = SongTitleFiveDivWidth;
+      titleH = SongTitleFiveDivHeight;
     }
     //
     boolean isHoveringRow = (localMouseX >= picX && localMouseX <= titleX + titleW && localMouseY >= picY && localMouseY <= picY + picH);
@@ -681,7 +681,7 @@ void drawInterface() {
     PreviousCenterX, PreviousCenterY + ( PreviousArrowWidth / 2 )
     );
   //Previous Symbol Right Arrow
- if (PreviousPressed) {
+  if (PreviousPressed) {
     stroke(255);
     fill(255);
     strokeWeight(5);
@@ -700,7 +700,7 @@ void drawInterface() {
   //
   //Play Symbol
   boolean PausePlayPressed = (localMouseX >= PausePlayDivX && localMouseX <= PausePlayDivX + PausePlayDivWidth && localMouseY >= PausePlayDivY && localMouseY <= PausePlayDivY + PausePlayDivHeight) && mousePressed;
- if (PausePlayPressed) {
+  if (PausePlayPressed) {
     stroke(255);
     fill(255);
     strokeWeight(5);
@@ -733,7 +733,7 @@ void drawInterface() {
 
   //Next Symbol Right Arrow
   boolean NextPressed = (localMouseX >= NextDivX && localMouseX <= NextDivX + NextDivWidth && localMouseY >= NextDivY && localMouseY <= NextDivY + NextDivHeight) && mousePressed;
-if (NextPressed) {
+  if (NextPressed) {
     stroke(255);
     fill(255);
     strokeWeight(5);
@@ -748,7 +748,7 @@ if (NextPressed) {
     NextCenterX, NextCenterY + ( NextArrowWidth / 2 )
     );
   //Next Symbol Left Arrow
-if (NextPressed) {
+  if (NextPressed) {
     stroke(255);
     fill(255);
     strokeWeight(5);
@@ -765,7 +765,7 @@ if (NextPressed) {
 
   //Fast Forward Symbol Arc
   boolean FastForwardPressed = (localMouseX >= FastForwardDivX && localMouseX <= FastForwardDivX + FastForwardDivWidth && localMouseY >= FastForwardDivY && localMouseY <= FastForwardDivY + FastForwardDivHeight) && mousePressed;
-if (FastForwardPressed) {
+  if (FastForwardPressed) {
     stroke(255);
     noFill();
     strokeWeight(5);
@@ -782,7 +782,7 @@ if (FastForwardPressed) {
   float FastForwardEndY = FastForwardCenterY;
   float FastForwardArrowSize = FastForwardRadius * 0.5 ;
   //Fast Forward Symbol Arrow Head
- if (FastForwardPressed) {
+  if (FastForwardPressed) {
     stroke(255);
     fill(255);
     strokeWeight(5);
@@ -799,7 +799,7 @@ if (FastForwardPressed) {
 
   //Shuffle Symbol
   boolean ShufflePressed = (localMouseX >= ShuffleDivX && localMouseX <= ShuffleDivX + ShuffleDivWidth && localMouseY >= ShuffleDivY && localMouseY <= ShuffleDivY + ShuffleDivHeight) && mousePressed;
-if (ShufflePressed) {
+  if (ShufflePressed) {
     stroke(255);
     fill(255);
     strokeWeight(5);
@@ -819,7 +819,7 @@ if (ShufflePressed) {
   bezier(leftX, topY, ShuffleCenterX - hSpace/2, topY, ShuffleCenterX + hSpace/2, botY, rightX, botY);
   bezier(leftX, botY, ShuffleCenterX - hSpace/2, botY, ShuffleCenterX + hSpace/2, topY, rightX, topY);
   float shuffleArrowSize = ShuffleDivWidth * 0.12;
-if (ShufflePressed) {
+  if (ShufflePressed) {
     stroke(255);
     fill(255);
     strokeWeight(5);
