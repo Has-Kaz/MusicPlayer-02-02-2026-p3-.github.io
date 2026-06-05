@@ -17,7 +17,7 @@ PImage[] playListImages = new PImage[ numberOfSongs ];
 int currentSong = numberOfSongs - numberOfSongs; //ZERO, Math Property
 //
 float songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight;
-color redInk, resetInk, blackInk, whiteInk;
+color redInk, resetInk, blackInk, whiteInk, activeClickColor;
 float constantDecrease;
 int iWhile;
 float fontSize1, fontSize2;
@@ -244,6 +244,8 @@ void setup() {
   QuitDivY = appHeight * 10 / paperHeight;
   QuitDivWidth = appWidth * 15 / paperWidth;
   QuitDivHeight = appHeight * 15 / paperHeight;
+  
+  activeClickColor = #000000;
   //
   //
   String upArrow = "..";
@@ -378,92 +380,58 @@ void drawInterface() {
     image(img, imgX, imgY, renderWidth, renderHeight);
   }
   //
-  for (int row = 1; row <= 5; row++) {
+for (int row = 1; row <= 5; row++) {
     int nextSongIdx = (currentSong + row) % numberOfSongs;
     float picX, picY, picW, picH;
     float titleX, titleY, titleW, titleH;
-    //
+      //
     if (row == 1) {
-      picX = SongPicOneDivX;
-      picY = SongPicOneDivY;
-      picW = SongPicOneDivWidth;
-      picH = SongPicOneDivHeight;
-      titleX = SongTitleOneDivX;
-      titleY = SongTitleOneDivY;
-      titleW = SongTitleOneDivWidth;
-      titleH = SongTitleOneDivHeight;
+      picX = SongPicOneDivX; picY = SongPicOneDivY; picW = SongPicOneDivWidth; picH = SongPicOneDivHeight;
+      titleX = SongTitleOneDivX; titleY = SongTitleOneDivY; titleW = SongTitleOneDivWidth; titleH = SongTitleOneDivHeight;
     } else if (row == 2) {
-      picX = SongPicTwoDivX;
-      picY = SongPicTwoDivY;
-      picW = SongPicTwoDivWidth;
-      picH = SongPicTwoDivHeight;
-      titleX = SongTitleTwoDivX;
-      titleY = SongTitleTwoDivY;
-      titleW = SongTitleTwoDivWidth;
-      titleH = SongTitleTwoDivHeight;
+      picX = SongPicTwoDivX; picY = SongPicTwoDivY; picW = SongPicTwoDivWidth; picH = SongPicTwoDivHeight;
+      titleX = SongTitleTwoDivX; titleY = SongTitleTwoDivY; titleW = SongTitleTwoDivWidth; titleH = SongTitleTwoDivHeight;
     } else if (row == 3) {
-      picX = SongPicThreeDivX;
-      picY = SongPicThreeDivY;
-      picW = SongPicThreeDivWidth;
-      picH = SongPicThreeDivHeight;
-      titleX = SongTitleThreeDivX;
-      titleY = SongTitleThreeDivY;
-      titleW = SongTitleThreeDivWidth;
-      titleH = SongTitleThreeDivHeight;
+      picX = SongPicThreeDivX; picY = SongPicThreeDivY; picW = SongPicThreeDivWidth; picH = SongPicThreeDivHeight;
+      titleX = SongTitleThreeDivX; titleY = SongTitleThreeDivY; titleW = SongTitleThreeDivWidth; titleH = SongTitleThreeDivHeight;
     } else if (row == 4) {
-      picX = SongPicFourDivX;
-      picY = SongPicFourDivY;
-      picW = SongPicFourDivWidth;
-      picH = SongPicFourDivHeight;
-      titleX = SongTitleFourDivX;
-      titleY = SongTitleFourDivY;
-      titleW = SongTitleFourDivWidth;
-      titleH = SongTitleFourDivHeight;
+      picX = SongPicFourDivX; picY = SongPicFourDivY; picW = SongPicFourDivWidth; picH = SongPicFourDivHeight;
+      titleX = SongTitleFourDivX; titleY = SongTitleFourDivY; titleW = SongTitleFourDivWidth; titleH = SongTitleFourDivHeight;
     } else {
-      picX = SongPicFiveDivX;
-      picY = SongPicFiveDivY;
-      picW = SongPicFiveDivWidth;
-      picH = SongPicFiveDivHeight;
-      titleX = SongTitleFiveDivX;
-      titleY = SongTitleFiveDivY;
-      titleW = SongTitleFiveDivWidth;
-      titleH = SongTitleFiveDivHeight;
+      picX = SongPicFiveDivX; picY = SongPicFiveDivY; picW = SongPicFiveDivWidth; picH = SongPicFiveDivHeight;
+      titleX = SongTitleFiveDivX; titleY = SongTitleFiveDivY; titleW = SongTitleFiveDivWidth; titleH = SongTitleFiveDivHeight;
     }
     //
     boolean isHoveringRow = (localMouseX >= picX && localMouseX <= titleX + titleW && localMouseY >= picY && localMouseY <= picY + picH);
-    //
-    stroke(0);
-    strokeWeight(2);
-    fill(255);
-    rect(titleX, titleY, titleW, titleH);
-    textAlign(LEFT, CENTER);
-    textFont(font, fontSize2);
-    fill(blackInk);
-    text(playListMetaData[nextSongIdx].title(), titleX + 5, titleY, titleW - 5, titleH);
-    fill(resetInk);
-    //
-    stroke(0);
-    strokeWeight(2);
-
-    if (isHoveringRow) {
-      fill(200); // Hover Gray
+    boolean isRowPressed = isHoveringRow && mousePressed;
+    if (isRowPressed) {
+      fill(activeClickColor);
+    } else if (isHoveringRow) {
+      fill(200); 
     } else {
-      fill(255); // Default White
+      fill(255); 
     }
-    rect(titleX, titleY, titleW, titleH);
-
-    textAlign(LEFT, CENTER);
-    textFont(font, fontSize2);
-    fill(blackInk);
-    text(playListMetaData[nextSongIdx].title(), titleX + 5, titleY, titleW - 5, titleH);
-    fill(resetInk);
     stroke(0);
     strokeWeight(2);
-    if (isHoveringRow) {
+    rect(titleX, titleY, titleW, titleH);
+    textAlign(LEFT, CENTER);
+    textFont(font, fontSize2);
+    if (isRowPressed) {
+      fill(whiteInk); 
+    } else {
+      fill(blackInk);
+    }
+    text(playListMetaData[nextSongIdx].title(), titleX + 5, titleY, titleW - 5, titleH);
+    fill(resetInk);
+    if (isRowPressed) {
+      fill(activeClickColor);
+    } else if (isHoveringRow) {
       fill(200);
     } else {
       fill(255);
     }
+    stroke(0);
+    strokeWeight(2);
     rect(picX, picY, picW, picH);
     PImage rowImg = playListImages[nextSongIdx];
     if (rowImg != null && rowImg.width > 0 && rowImg.height > 0) {
@@ -485,7 +453,6 @@ void drawInterface() {
   //
   stroke(0);
   strokeWeight(2);
-  color activeClickColor = #000000;
   if (localMouseX >= LoopDivX && localMouseX <= LoopDivX + LoopDivWidth && localMouseY >= LoopDivY && localMouseY <= LoopDivY + LoopDivHeight) {
     if (mousePressed) {
       fill(activeClickColor);
