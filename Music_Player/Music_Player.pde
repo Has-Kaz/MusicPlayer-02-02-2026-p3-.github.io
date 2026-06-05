@@ -1,4 +1,3 @@
-//
 //Minim Library
 import ddf.minim.*;
 import ddf.minim.analysis.*;
@@ -7,14 +6,14 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
-Minim minim;  //initates entire class
-int numberOfSongs = 6; //Best Practcie
+Minim minim;
+int numberOfSongs = 6;
 int numberOfSoundEffect = 1;
 AudioPlayer[] playList = new AudioPlayer[ numberOfSongs ];
 AudioMetaData[] playListMetaData = new AudioMetaData[ numberOfSongs ];
 AudioPlayer[] soundEffects = new AudioPlayer[ numberOfSoundEffect ];
 PImage[] playListImages = new PImage[ numberOfSongs ];
-int currentSong = numberOfSongs - numberOfSongs; //ZERO, Math Property
+int currentSong = numberOfSongs - numberOfSongs;
 //
 float songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight;
 color redInk, resetInk, blackInk, whiteInk, activeClickColor;
@@ -244,7 +243,7 @@ void setup() {
   QuitDivY = appHeight * 10 / paperHeight;
   QuitDivWidth = appWidth * 15 / paperWidth;
   QuitDivHeight = appHeight * 15 / paperHeight;
-  
+
   activeClickColor = #000000;
   //
   //
@@ -380,26 +379,56 @@ void drawInterface() {
     image(img, imgX, imgY, renderWidth, renderHeight);
   }
   //
-for (int row = 1; row <= 5; row++) {
+  for (int row = 1; row <= 5; row++) {
     int nextSongIdx = (currentSong + row) % numberOfSongs;
     float picX, picY, picW, picH;
     float titleX, titleY, titleW, titleH;
-      //
+    //
     if (row == 1) {
-      picX = SongPicOneDivX; picY = SongPicOneDivY; picW = SongPicOneDivWidth; picH = SongPicOneDivHeight;
-      titleX = SongTitleOneDivX; titleY = SongTitleOneDivY; titleW = SongTitleOneDivWidth; titleH = SongTitleOneDivHeight;
+      picX = SongPicOneDivX;
+      picY = SongPicOneDivY;
+      picW = SongPicOneDivWidth;
+      picH = SongPicOneDivHeight;
+      titleX = SongTitleOneDivX;
+      titleY = SongTitleOneDivY;
+      titleW = SongTitleOneDivWidth;
+      titleH = SongTitleOneDivHeight;
     } else if (row == 2) {
-      picX = SongPicTwoDivX; picY = SongPicTwoDivY; picW = SongPicTwoDivWidth; picH = SongPicTwoDivHeight;
-      titleX = SongTitleTwoDivX; titleY = SongTitleTwoDivY; titleW = SongTitleTwoDivWidth; titleH = SongTitleTwoDivHeight;
+      picX = SongPicTwoDivX;
+      picY = SongPicTwoDivY;
+      picW = SongPicTwoDivWidth;
+      picH = SongPicTwoDivHeight;
+      titleX = SongTitleTwoDivX;
+      titleY = SongTitleTwoDivY;
+      titleW = SongTitleTwoDivWidth;
+      titleH = SongTitleTwoDivHeight;
     } else if (row == 3) {
-      picX = SongPicThreeDivX; picY = SongPicThreeDivY; picW = SongPicThreeDivWidth; picH = SongPicThreeDivHeight;
-      titleX = SongTitleThreeDivX; titleY = SongTitleThreeDivY; titleW = SongTitleThreeDivWidth; titleH = SongTitleThreeDivHeight;
+      picX = SongPicThreeDivX;
+      picY = SongPicThreeDivY;
+      picW = SongPicThreeDivWidth;
+      picH = SongPicThreeDivHeight;
+      titleX = SongTitleThreeDivX;
+      titleY = SongTitleThreeDivY;
+      titleW = SongTitleThreeDivWidth;
+      titleH = SongTitleThreeDivHeight;
     } else if (row == 4) {
-      picX = SongPicFourDivX; picY = SongPicFourDivY; picW = SongPicFourDivWidth; picH = SongPicFourDivHeight;
-      titleX = SongTitleFourDivX; titleY = SongTitleFourDivY; titleW = SongTitleFourDivWidth; titleH = SongTitleFourDivHeight;
+      picX = SongPicFourDivX;
+      picY = SongPicFourDivY;
+      picW = SongPicFourDivWidth;
+      picH = SongPicFourDivHeight;
+      titleX = SongTitleFourDivX;
+      titleY = SongTitleFourDivY;
+      titleW = SongTitleFourDivWidth;
+      titleH = SongTitleFourDivHeight;
     } else {
-      picX = SongPicFiveDivX; picY = SongPicFiveDivY; picW = SongPicFiveDivWidth; picH = SongPicFiveDivHeight;
-      titleX = SongTitleFiveDivX; titleY = SongTitleFiveDivY; titleW = SongTitleFiveDivWidth; titleH = SongTitleFiveDivHeight;
+      picX = SongPicFiveDivX;
+      picY = SongPicFiveDivY;
+      picW = SongPicFiveDivWidth;
+      picH = SongPicFiveDivHeight;
+      titleX = SongTitleFiveDivX;
+      titleY = SongTitleFiveDivY;
+      titleW = SongTitleFiveDivWidth;
+      titleH = SongTitleFiveDivHeight;
     }
     //
     boolean isHoveringRow = (localMouseX >= picX && localMouseX <= titleX + titleW && localMouseY >= picY && localMouseY <= picY + picH);
@@ -407,9 +436,9 @@ for (int row = 1; row <= 5; row++) {
     if (isRowPressed) {
       fill(activeClickColor);
     } else if (isHoveringRow) {
-      fill(200); 
+      fill(200);
     } else {
-      fill(255); 
+      fill(255);
     }
     stroke(0);
     strokeWeight(2);
@@ -417,7 +446,7 @@ for (int row = 1; row <= 5; row++) {
     textAlign(LEFT, CENTER);
     textFont(font, fontSize2);
     if (isRowPressed) {
-      fill(whiteInk); 
+      fill(whiteInk);
     } else {
       fill(blackInk);
     }
@@ -940,6 +969,69 @@ void mousePressed() {
   }
 
   //
+  //SONG ONE BUTTON
+  if ((localMouseX >= SongTitleOneDivX && localMouseX <= SongTitleOneDivX + SongTitleOneDivWidth &&
+    localMouseY >= SongTitleOneDivY && localMouseY <= SongTitleOneDivY + SongTitleOneDivHeight)
+    ||
+    (localMouseX >= SongPicOneDivX && localMouseX <= SongPicOneDivX + SongPicOneDivWidth &&
+    localMouseY >= SongPicOneDivY && localMouseY <= SongPicOneDivY + SongPicOneDivHeight)) {
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+    currentSong = (currentSong + 1) % numberOfSongs;
+    playList[currentSong].play();
+  }
+
+  //
+  //SONG TWO BUTTON
+  if ((localMouseX >= SongTitleTwoDivX && localMouseX <= SongTitleTwoDivX + SongTitleTwoDivWidth &&
+    localMouseY >= SongTitleTwoDivY && localMouseY <= SongTitleTwoDivY + SongTitleTwoDivHeight)
+    ||
+    (localMouseX >= SongPicTwoDivX && localMouseX <= SongPicTwoDivX + SongPicTwoDivWidth &&
+    localMouseY >= SongPicTwoDivY && localMouseY <= SongPicTwoDivY + SongPicTwoDivHeight)) {
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+    currentSong = (currentSong + 2) % numberOfSongs;
+    playList[currentSong].play();
+  }
+
+  //
+  //SONG THREE BUTTON
+  if ((localMouseX >= SongTitleThreeDivX && localMouseX <= SongTitleThreeDivX + SongTitleThreeDivWidth &&
+    localMouseY >= SongTitleThreeDivY && localMouseY <= SongTitleThreeDivY + SongTitleThreeDivHeight)
+    ||
+    (localMouseX >= SongPicThreeDivX && localMouseX <= SongPicThreeDivX + SongPicThreeDivWidth &&
+    localMouseY >= SongPicThreeDivY && localMouseY <= SongPicThreeDivY + SongPicThreeDivHeight)) {
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+    currentSong = (currentSong + 3) % numberOfSongs;
+    playList[currentSong].play();
+  }
+
+  //
+  //SONG FOUR BUTTON
+  if ((localMouseX >= SongTitleFourDivX && localMouseX <= SongTitleFourDivX + SongTitleFourDivWidth &&
+    localMouseY >= SongTitleFourDivY && localMouseY <= SongTitleFourDivY + SongTitleFourDivHeight)
+    ||
+    (localMouseX >= SongPicFourDivX && localMouseX <= SongPicFourDivX + SongPicFourDivWidth &&
+    localMouseY >= SongPicFourDivY && localMouseY <= SongPicFourDivY + SongPicFourDivHeight)) {
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+    currentSong = (currentSong + 4) % numberOfSongs;
+    playList[currentSong].play();
+  }
+
+  //
+  //SONG FIVE BUTTON
+  if ((localMouseX >= SongTitleFiveDivX && localMouseX <= SongTitleFiveDivX + SongTitleFiveDivWidth &&
+    localMouseY >= SongTitleFiveDivY && localMouseY <= SongTitleFiveDivY + SongTitleFiveDivHeight)
+    ||
+    (localMouseX >= SongPicFiveDivX && localMouseX <= SongPicFiveDivX + SongPicFiveDivWidth &&
+    localMouseY >= SongPicFiveDivY && localMouseY <= SongPicFiveDivY + SongPicFiveDivHeight)) {
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+    currentSong = (currentSong + 5) % numberOfSongs;
+    playList[currentSong].play();
+  }
 }//End mousePressed
 //
 //
