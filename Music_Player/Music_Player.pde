@@ -114,6 +114,10 @@ float loopCenterX ;
 float loopCenterY ;
 float rewindCenterX ;
 float rewindCenterY ;
+float QuitDivX ;
+float QuitDivY ;
+float QuitDivWidth ;
+float QuitDivHeight ;
 int appWidth;
 int appHeight;
 float scaleFactor;
@@ -235,6 +239,11 @@ void setup() {
   SongeTitleFiveDivY = appHeight * 250 / paperHeight;
   SongeTitleFiveDivWidth = appWidth * 120 / paperWidth;
   SongeTitleFiveDivHeight = appHeight * 20 / paperHeight;
+
+  QuitDivX = appWidth * 135 / paperWidth;
+  QuitDivY = appHeight * 10 / paperHeight;
+  QuitDivWidth = appWidth * 15 / paperWidth;
+  QuitDivHeight = appHeight * 15 / paperHeight;
   //
   //
   String upArrow = "..";
@@ -321,9 +330,22 @@ void draw() {
   scale(scaleFactor);
   drawInterface();
   popMatrix();
+  //
+  if (!playList[currentSong].isPlaying() && playList[currentSong].position() >= playList[currentSong].length() - 100) {
+    playList[currentSong].rewind();
+    if (currentSong == numberOfSongs - 1) {
+      currentSong = 0;
+    } else {
+      currentSong++;
+    }
+    playList[currentSong].play();
+  }
 }
 
 void drawInterface() {
+  //
+  float localMouseX = (mouseX - (width - appWidth * scaleFactor) / 2) / scaleFactor;
+  float localMouseY = (mouseY - (height - appHeight * scaleFactor) / 2) / scaleFactor;
   //
   stroke(0);
   strokeWeight(2);
@@ -360,6 +382,7 @@ void drawInterface() {
     int nextSongIdx = (currentSong + row) % numberOfSongs;
     float picX, picY, picW, picH;
     float titleX, titleY, titleW, titleH;
+    //
     if (row == 1) {
       picX = SongPicOneDivX;
       picY = SongPicOneDivY;
@@ -396,7 +419,7 @@ void drawInterface() {
       titleY = SongeTitleFourDivY;
       titleW = SongeTitleFourDivWidth;
       titleH = SongeTitleFourDivHeight;
-    } else { 
+    } else {
       picX = SongPicFiveDivX;
       picY = SongPicFiveDivY;
       picW = SongPicFiveDivWidth;
@@ -406,6 +429,9 @@ void drawInterface() {
       titleW = SongeTitleFiveDivWidth;
       titleH = SongeTitleFiveDivHeight;
     }
+    //
+    boolean isHoveringRow = (localMouseX >= picX && localMouseX <= titleX + titleW && localMouseY >= picY && localMouseY <= picY + picH);
+    //
     stroke(0);
     strokeWeight(2);
     fill(255);
@@ -418,7 +444,26 @@ void drawInterface() {
     //
     stroke(0);
     strokeWeight(2);
-    fill(255);
+
+    if (isHoveringRow) {
+      fill(200); // Hover Gray
+    } else {
+      fill(255); // Default White
+    }
+    rect(titleX, titleY, titleW, titleH);
+
+    textAlign(LEFT, CENTER);
+    textFont(font, fontSize2);
+    fill(blackInk);
+    text(playListMetaData[nextSongIdx].title(), titleX + 5, titleY, titleW - 5, titleH);
+    fill(resetInk);
+    stroke(0);
+    strokeWeight(2);
+    if (isHoveringRow) {
+      fill(200);
+    } else {
+      fill(255);
+    }
     rect(picX, picY, picW, picH);
     PImage rowImg = playListImages[nextSongIdx];
     if (rowImg != null && rowImg.width > 0 && rowImg.height > 0) {
@@ -440,85 +485,211 @@ void drawInterface() {
   //
   stroke(0);
   strokeWeight(2);
-  fill(255);
+  color activeClickColor = #000000;
+  if (localMouseX >= LoopDivX && localMouseX <= LoopDivX + LoopDivWidth && localMouseY >= LoopDivY && localMouseY <= LoopDivY + LoopDivHeight) {
+    if (mousePressed) {
+      fill(activeClickColor);
+    } else {
+      fill(200);
+    }
+  } else {
+    fill(255);
+  }
   rect( LoopDivX, LoopDivY, LoopDivWidth, LoopDivHeight );
+  if (localMouseX >= RewindDivX && localMouseX <= RewindDivX + RewindDivWidth && localMouseY >= RewindDivY && localMouseY <= RewindDivY + RewindDivHeight) {
+    if (mousePressed) {
+      fill(activeClickColor);
+    } else {
+      fill(200);
+    }
+  } else {
+    fill(255);
+  }
   rect( RewindDivX, RewindDivY, RewindDivWidth, RewindDivHeight );
+  if (localMouseX >= PreviousDivX && localMouseX <= PreviousDivX + PreviousDivWidth && localMouseY >= PreviousDivY && localMouseY <= PreviousDivY + PreviousDivHeight) {
+    if (mousePressed) {
+      fill(activeClickColor);
+    } else {
+      fill(200);
+    }
+  } else {
+    fill(255);
+  }
   rect( PreviousDivX, PreviousDivY, PreviousDivWidth, PreviousDivHeight );
+  if (localMouseX >= PausePlayDivX && localMouseX <= PausePlayDivX + PausePlayDivWidth && localMouseY >= PausePlayDivY && localMouseY <= PausePlayDivY + PausePlayDivHeight) {
+    if (mousePressed) {
+      fill(activeClickColor);
+    } else {
+      fill(200);
+    }
+  } else {
+    fill(255);
+  }
   rect( PausePlayDivX, PausePlayDivY, PausePlayDivWidth, PausePlayDivHeight );
+  if (localMouseX >= NextDivX && localMouseX <= NextDivX + NextDivWidth && localMouseY >= NextDivY && localMouseY <= NextDivY + NextDivHeight) {
+    if (mousePressed) {
+      fill(activeClickColor);
+    } else {
+      fill(200);
+    }
+  } else {
+    fill(255);
+  }
   rect( NextDivX, NextDivY, NextDivWidth, NextDivHeight );
+  if (localMouseX >= FastForwardDivX && localMouseX <= FastForwardDivX + FastForwardDivWidth && localMouseY >= FastForwardDivY && localMouseY <= FastForwardDivY + FastForwardDivHeight) {
+    if (mousePressed) {
+      fill(activeClickColor);
+    } else {
+      fill(200);
+    }
+  } else {
+    fill(255);
+  }
   rect( FastForwardDivX, FastForwardDivY, FastForwardDivWidth, FastForwardDivHeight );
+  if (localMouseX >= ShuffleDivX && localMouseX <= ShuffleDivX + ShuffleDivWidth && localMouseY >= ShuffleDivY && localMouseY <= ShuffleDivY + ShuffleDivHeight) {
+    if (mousePressed) {
+      fill(activeClickColor);
+    } else {
+      fill(200);
+    }
+  } else {
+    fill(255);
+  }
   rect( ShuffleDivX, ShuffleDivY, ShuffleDivWidth, ShuffleDivHeight );
+  if (localMouseX >= QuitDivX && localMouseX <= QuitDivX + QuitDivWidth && localMouseY >= QuitDivY && localMouseY <= QuitDivY + QuitDivHeight) {
+    if (mousePressed) {
+      fill(redInk);
+    } else {
+      fill(200);
+    }
+  } else {
+    fill(255);
+  }
+  rect( QuitDivX, QuitDivY, QuitDivWidth, QuitDivHeight );
   //
   //Line
   stroke(0);
   strokeWeight(3.5);
   line( LineEndOneX, LineEndOneY, LineEndTwoX, LineEndTwoY );
 
-  // Loop Symbol Left Semi Circle
-  radius = ( LoopDivWidth / 10 ) * 3 ;
-  rewindCenterX = LoopDivX + ( LoopDivWidth / 2 );
-  rewindCenterY = LoopDivY + ( LoopDivHeight / 2 );
-  radius = ( LoopDivWidth / 10 ) * 3 ;
+  //
+  //Loop Symbol
+  //
+  radius = ( LoopDivWidth / 10 ) * 3.2;
   loopCenterX = LoopDivX + ( LoopDivWidth / 2 );
   loopCenterY = LoopDivY + ( LoopDivHeight / 2 );
-  float endX1 = loopCenterX - radius; // X-coordinate of the end point (cos(PI) * radius)
-  float endY1 = loopCenterY;          // Y-coordinate of the end point (sin(PI) * radius = 0)
-  float endX2 = loopCenterX + radius;
-  float endY2 = loopCenterY ;
-
-  // Loop Symbol Right Semi Circle
-  stroke(0);
-  strokeWeight(5);
-  noFill();
-  arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 1.5, PI );
-  float arrowSize = radius * 0.333333333 ; // Size of the arrowhead
-  fill(0); // Black fill for the arrowhead
-  //Loop Symbol Arrow Heads
+  float gapAngle = radians(35);
+  float arrowSize = radius * 0.4;
+  //
+  boolean loopPressed = (localMouseX >= LoopDivX && localMouseX <= LoopDivX + LoopDivWidth && localMouseY >= LoopDivY && localMouseY <= LoopDivY + LoopDivHeight) && mousePressed;
+  //
+  if (loopPressed) {
+    stroke(255);
+    noFill();
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    noFill();
+  }
+  float arc1Start = -HALF_PI + gapAngle;
+  float arc1End   = HALF_PI - gapAngle;
+  arc(loopCenterX, loopCenterY, radius * 2, radius * 2, arc1Start, arc1End);
+  float arc2Start = HALF_PI + gapAngle;
+  float arc2End   = TWO_PI - HALF_PI - gapAngle;
+  arc(loopCenterX, loopCenterY, radius * 2, radius * 2, arc2Start, arc2End);
+  if (loopPressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
+  float arrowTopX = loopCenterX + cos(arc2End) * radius;
+  float arrowTopY = loopCenterY + sin(arc2End) * radius;
+  pushMatrix();
+  translate(arrowTopX, arrowTopY);
+  rotate(arc2End + HALF_PI); // Aligns perfectly flush to point right
   triangle(
-    endX1, endY1, // Base of the arrowhead (end of the semi-circle)
-    endX1 - arrowSize, endY1 - arrowSize / 2, // Left point of the arrowhead
-    endX1 - arrowSize, endY1 + arrowSize / 2  // Right point of the arrowhead
+    0, 0,
+    -arrowSize * 1.2, -arrowSize/2,
+    -arrowSize * 1.2, arrowSize/2
     );
-  stroke(0);
-  strokeWeight(5);
-  noFill();
-  arc( loopCenterX, loopCenterY, radius * 2, radius * 2, 4.5, 6.5 );
+  popMatrix();
+  float arrowBotX = loopCenterX + cos(arc1End) * radius;
+  float arrowBotY = loopCenterY + sin(arc1End) * radius;
+  pushMatrix();
+  translate(arrowBotX, arrowBotY);
+  rotate(arc1End + HALF_PI); // Aligns perfectly flush to point left
   triangle(
-    endX2, endY2, // Base of the arrowhead (end of the semi-circle)
-    endX2 - arrowSize, endY2 - arrowSize, // Left point of the arrowhead
-    endX2 + arrowSize, endY2 - arrowSize // Right point of the arrowhead
+    0, 0,
+    -arrowSize * 1.2, -arrowSize/2,
+    -arrowSize * 1.2, arrowSize/2
     );
+  popMatrix();
 
   // Rewind Symbol Circle
-  stroke(0);
-  strokeWeight(5);
-  float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 ); // X-coordinate of the center
-  float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 ); // Y-coordinate of the center
+  boolean RewindPressed = (localMouseX >= RewindDivX && localMouseX <= RewindDivX + RewindDivWidth && localMouseY >= RewindDivY && localMouseY <= RewindDivY + RewindDivHeight) && mousePressed;
+  if (RewindPressed) {
+    stroke(255);
+    noFill();
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    noFill();
+  }
+  float RewindCenterX = RewindDivX + ( RewindDivWidth / 2 );
+  float RewindCenterY = RewindDivY + ( RewindDivHeight / 2 );
   float RewindRadius = 25 ;
-  arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -PI, 2); // From 0 to PI (half-circle)
+  arc(RewindCenterX, RewindCenterY, RewindRadius * 2, RewindRadius * 2, -PI, 2);
   float RewindEndX = RewindCenterX - RewindRadius;
   float RewindEndY = RewindCenterY;
   float RewindArrowSize = RewindRadius * 0.5 ;
   // Rewind Symbol Arrow Head
-  fill(0);
+  if (RewindPressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   triangle(
     RewindEndX, RewindEndY,
     RewindEndX - RewindArrowSize / 2, RewindEndY - RewindArrowSize,
     RewindEndX + RewindArrowSize / 2, RewindEndY - RewindArrowSize
     );
+
   //Previous Symbol Left Arrow
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
+  boolean PreviousPressed = (localMouseX >= PreviousDivX && localMouseX <= PreviousDivX + PreviousDivWidth && localMouseY >= PreviousDivY && localMouseY <= PreviousDivY + PreviousDivHeight) && mousePressed;
+  if (PreviousPressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   triangle(
     PreviousCenterX - (PreviousArrowWidth / 2), PreviousCenterY,
     PreviousCenterX, PreviousCenterY - ( PreviousArrowWidth / 2 ),
     PreviousCenterX, PreviousCenterY + ( PreviousArrowWidth / 2 )
     );
   //Previous Symbol Right Arrow
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
+ if (PreviousPressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   triangle(
     PreviousCenterX, PreviousCenterY,
     PreviousCenterX + (PreviousArrowWidth / 2), PreviousCenterY - ( PreviousArrowWidth / 2 ),
@@ -528,24 +699,29 @@ void drawInterface() {
   //PLAY-PAUSE SYMBOL
   //
   //Play Symbol
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
+  boolean PausePlayPressed = (localMouseX >= PausePlayDivX && localMouseX <= PausePlayDivX + PausePlayDivWidth && localMouseY >= PausePlayDivY && localMouseY <= PausePlayDivY + PausePlayDivHeight) && mousePressed;
+ if (PausePlayPressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   if ( playList[currentSong].isPlaying() ) {
-    // Show PAUSE icon (two vertical bars) while music outputs sound
     float PauseRectOneDivX = PausePlayDivX + ( PausePlayDivWidth / 5 );
     float PauseRectOneDivY = PausePlayDivY + ( PausePlayDivHeight / 5 );
     float PauseRectOneDivWidth =  PausePlayDivWidth / 5 ;
     float PauseRectOneDivHeight = PausePlayDivHeight * 0.6 ;
     rect(PauseRectOneDivX, PauseRectOneDivY, PauseRectOneDivWidth, PauseRectOneDivHeight);
-
+    //
     float PauseRectTwoDivX = PausePlayDivX + ( PausePlayDivWidth * 0.6 );
     float PauseRectTwoDivY = PausePlayDivY + ( PausePlayDivHeight / 5 );
     float PauseRectTwoDivWidth =  PausePlayDivWidth / 5 ;
     float PauseRectTwoDivHeight = PausePlayDivHeight * 0.6 ;
     rect(PauseRectTwoDivX, PauseRectTwoDivY, PauseRectTwoDivWidth, PauseRectTwoDivHeight );
   } else {
-    // Show PLAY icon (sideways triangle) when audio is suspended or stopped
     float PlayPointOneDivX = PausePlayDivX + ( PausePlayDivWidth / 5 );
     float PlayPointOneDivY = PausePlayDivY + ( PausePlayDivHeight / 5 );
     float PlayPointTwoDivX = PausePlayDivX + ( PausePlayDivWidth / 5 );
@@ -556,18 +732,31 @@ void drawInterface() {
   }
 
   //Next Symbol Right Arrow
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
+  boolean NextPressed = (localMouseX >= NextDivX && localMouseX <= NextDivX + NextDivWidth && localMouseY >= NextDivY && localMouseY <= NextDivY + NextDivHeight) && mousePressed;
+if (NextPressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   triangle(
     NextCenterX + (NextArrowWidth / 2), NextCenterY,
     NextCenterX, NextCenterY - ( NextArrowWidth / 2 ),
     NextCenterX, NextCenterY + ( NextArrowWidth / 2 )
     );
   //Next Symbol Left Arrow
-  stroke(0);
-  strokeWeight(2);
-  fill(0);
+if (NextPressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   triangle(
     NextCenterX, NextCenterY,
     NextCenterX - (NextArrowWidth / 2), NextCenterY - ( NextArrowWidth / 2 ),
@@ -575,18 +764,33 @@ void drawInterface() {
     );
 
   //Fast Forward Symbol Arc
-  stroke(0);
-  strokeWeight(5);
-  noFill();
-  float FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the centerfloat FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 ); // X-coordinate of the center
-  float FastForwardCenterY = FastForwardDivY + ( FastForwardDivHeight / 2 ); // Y-coordinate of the center
+  boolean FastForwardPressed = (localMouseX >= FastForwardDivX && localMouseX <= FastForwardDivX + FastForwardDivWidth && localMouseY >= FastForwardDivY && localMouseY <= FastForwardDivY + FastForwardDivHeight) && mousePressed;
+if (FastForwardPressed) {
+    stroke(255);
+    noFill();
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    noFill();
+  }
+  float FastForwardCenterX = FastForwardDivX + ( FastForwardDivWidth / 2 );
+  float FastForwardCenterY = FastForwardDivY + ( FastForwardDivHeight / 2 );
   float FastForwardRadius = 25 ;
   arc(FastForwardCenterX, FastForwardCenterY, FastForwardRadius * 2, FastForwardRadius * 2, -5.3, -0.5 ); // From 0 to PI (half-circle)
   float FastForwardEndX = FastForwardCenterX + FastForwardRadius;
   float FastForwardEndY = FastForwardCenterY;
   float FastForwardArrowSize = FastForwardRadius * 0.5 ;
   //Fast Forward Symbol Arrow Head
-  fill(0);
+ if (FastForwardPressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   triangle(
     FastForwardEndX, FastForwardEndY,
     FastForwardEndX - FastForwardArrowSize / 2, FastForwardEndY - FastForwardArrowSize,
@@ -594,42 +798,184 @@ void drawInterface() {
     );
 
   //Shuffle Symbol
-  stroke(0);
-  strokeWeight(5); // Match the weight style of other icons
-  noFill();
+  boolean ShufflePressed = (localMouseX >= ShuffleDivX && localMouseX <= ShuffleDivX + ShuffleDivWidth && localMouseY >= ShuffleDivY && localMouseY <= ShuffleDivY + ShuffleDivHeight) && mousePressed;
+if (ShufflePressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   float ShuffleCenterX = ShuffleDivX + ( ShuffleDivWidth / 2 );
   float ShuffleCenterY = ShuffleDivY + ( ShuffleDivHeight / 2 );
-  float hSpace = ShuffleDivWidth * 0.3;  // Half-width of the total icon span
-  float vSpace = ShuffleDivHeight * 0.2; // Vertical distance from center
+  float hSpace = ShuffleDivWidth * 0.3;
+  float vSpace = ShuffleDivHeight * 0.2;
   float leftX  = ShuffleCenterX - hSpace;
   float rightX = ShuffleCenterX + hSpace;
   float topY   = ShuffleCenterY - vSpace;
   float botY   = ShuffleCenterY + vSpace;
-  // 1. Top-Left to Bottom-Right Arrow (Backslash path)
   bezier(leftX, topY, ShuffleCenterX - hSpace/2, topY, ShuffleCenterX + hSpace/2, botY, rightX, botY);
-  // 2. Bottom-Left to Top-Right Arrow (Forward-slash path)
   bezier(leftX, botY, ShuffleCenterX - hSpace/2, botY, ShuffleCenterX + hSpace/2, topY, rightX, topY);
-  // 3. Arrow Heads
   float shuffleArrowSize = ShuffleDivWidth * 0.12;
-  fill(0);
-  // Top-Right Arrow Head
+if (ShufflePressed) {
+    stroke(255);
+    fill(255);
+    strokeWeight(5);
+  } else {
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+  }
   pushMatrix();
   translate(rightX, topY);
-  rotate(PI * 10); // Angles the arrow tip slightly upward
+  rotate(PI * 10);
   triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
   popMatrix();
-  // Bottom-Right Arrow Head
   pushMatrix();
   translate(rightX, botY);
-  rotate(PI / 10); // Angles the arrow tip slightly downward
+  rotate(PI / 10);
   triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
   popMatrix();
-  //2D Music Symbol Changes: hoverover, activation. Boolean from mousePressed()
+
+  //Quit Symbol
+  stroke(0);
+  strokeWeight(7.5);
+  noFill();
+  float QuitLineOneXOne = QuitDivX + ( QuitDivWidth * 0.2 );
+  float QuitLineOneYOne = QuitDivY + ( QuitDivHeight * 0.8 );
+  float QuitLineOneXTwo = QuitDivX + ( QuitDivWidth * 0.8 );
+  float QuitLineOneYTwo = QuitDivY + ( QuitDivHeight * 0.2 );
+  line(QuitLineOneXOne, QuitLineOneYOne, QuitLineOneXTwo, QuitLineOneYTwo);
+  float QuitLineTwoXOne = QuitDivX + ( QuitDivWidth * 0.2 );
+  float QuitLineTwoYOne = QuitDivY + ( QuitDivHeight * 0.2 );
+  float QuitLineTwoXTwo = QuitDivX + ( QuitDivWidth * 0.8 );
+  float QuitLineTwoYTwo = QuitDivY + ( QuitDivHeight * 0.8 );
+  line(QuitLineTwoXOne, QuitLineTwoYOne, QuitLineTwoXTwo, QuitLineTwoYTwo);
+  //
 }
 //
+//
+//
 void mousePressed() {
-  //2D Music Symbol Changes: sending Boolean to draw()
+  float localMouseX = (mouseX - (width - appWidth * scaleFactor) / 2) / scaleFactor;
+  float localMouseY = (mouseY - (height - appHeight * scaleFactor) / 2) / scaleFactor;
+  //
+  //BASE FOR BUTTON CLICK
+  /*
+  if (localMouseX >= BOXDivX && localMouseX <= BOXDivX + BOXDivWidth &&
+   localMouseY >= BOXDivY && localMouseY <= BOXDivY + BOXDivHeight) {
+   }
+   */
+  //
+  // LOOP BUTTON
+  if (localMouseX >= LoopDivX && localMouseX <= LoopDivX + LoopDivWidth &&
+    localMouseY >= LoopDivY && localMouseY <= LoopDivY + LoopDivHeight) {
+    //
+    if (playList[currentSong].isLooping()) {
+      playList[currentSong].play();
+    } else {
+      playList[currentSong].loop();
+    }
+  }
+
+  //
+  //REWIND BUTTON
+  if (localMouseX >= RewindDivX && localMouseX <= RewindDivX + RewindDivWidth &&
+    localMouseY >= RewindDivY && localMouseY <= RewindDivY + RewindDivHeight) {
+    playList[currentSong].skip( -10000 );
+  }
+
+  //
+  //PREVIOUS SONG BUTTON
+  if (localMouseX >= PreviousDivX && localMouseX <= PreviousDivX + PreviousDivWidth &&
+    localMouseY >= PreviousDivY && localMouseY <= PreviousDivY + PreviousDivHeight) {
+    if ( playList[currentSong].isPlaying() ) {
+      playList[currentSong].pause();
+      playList[currentSong].rewind();
+      //
+      if ( currentSong==0 ) {
+        currentSong = numberOfSongs-1;
+      } else {
+        currentSong--;
+      }
+      playList[currentSong].play();
+    } else {
+      //
+      playList[currentSong].rewind();
+      //
+      if ( currentSong==0 ) {
+        currentSong = numberOfSongs-1;
+      } else {
+        currentSong--;
+      }
+    }
+  }
+
+  //
+  //PLAY-PAUSE BUTTON
+  if (localMouseX >= PausePlayDivX && localMouseX <= PausePlayDivX + PausePlayDivWidth &&
+    localMouseY >= PausePlayDivY && localMouseY <= PausePlayDivY + PausePlayDivHeight) {
+    //
+    if (playList[currentSong].isPlaying()) {
+      playList[currentSong].pause();
+    } else {
+      playList[currentSong].play();
+    }
+  }
+
+  //
+  //NEXT SONG BUTTON
+  if (localMouseX >= NextDivX && localMouseX <= NextDivX + NextDivWidth &&
+    localMouseY >= NextDivY && localMouseY <= NextDivY + NextDivHeight) {
+    if ( playList[currentSong].isPlaying() ) {
+      playList[currentSong].pause();
+      playList[currentSong].rewind();
+      //
+      if ( currentSong==numberOfSongs-1 ) {
+        currentSong = 0;
+      } else {
+        currentSong++;
+      }
+      playList[currentSong].play();
+    } else {
+      //
+      playList[currentSong].rewind();
+      //
+      if ( currentSong==numberOfSongs-1 ) {
+        currentSong = 0;
+      } else {
+        currentSong++;
+      }
+    }
+  }
+
+  //
+  //FAST FORWARD BUTTON
+  if (localMouseX >= FastForwardDivX && localMouseX <= FastForwardDivX + FastForwardDivWidth &&
+    localMouseY >= FastForwardDivY && localMouseY <= FastForwardDivY + FastForwardDivHeight) {
+    playList[currentSong].skip( 10000 );
+  }
+
+  //
+  //SHUFFLE BUTTON
+  if (localMouseX >= ShuffleDivX && localMouseX <= ShuffleDivX + ShuffleDivWidth &&
+    localMouseY >= ShuffleDivY && localMouseY <= ShuffleDivY + ShuffleDivHeight) {
+    currentSong = int(random(numberOfSongs));
+  }
+
+  //
+  //QUIT BUTTON
+  if (localMouseX >= QuitDivX && localMouseX <= QuitDivX + QuitDivWidth &&
+    localMouseY >= QuitDivY && localMouseY <= QuitDivY + QuitDivHeight) {
+    exit();
+  }
+
+  //
 }//End mousePressed
+//
+//
 //
 void keyPressed() {
   //
