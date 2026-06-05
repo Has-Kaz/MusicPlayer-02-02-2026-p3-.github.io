@@ -391,7 +391,7 @@ void drawInterface() {
   fill(resetInk);
   //
   stroke(0);
-  strokeWeight(2);
+  strokeWeight(0);
   fill(255);
   rect( PictureBoxDivX, PictureBoxDivY, PictureBoxDivWidth, PictureBoxDivHeight );
   PImage img = playListImages[currentSong];
@@ -473,7 +473,7 @@ void drawInterface() {
       fill(255);
     }
     stroke(0);
-    strokeWeight(2);
+    strokeWeight(0);
     rect(titleX, titleY, titleW, titleH);
     textAlign(LEFT, CENTER);
     textFont(font, fontSize2);
@@ -492,7 +492,7 @@ void drawInterface() {
       fill(255);
     }
     stroke(0);
-    strokeWeight(2);
+    strokeWeight(0);
     rect(picX, picY, picW, picH);
     PImage rowImg = playListImages[nextSongIdx];
     if (rowImg != null && rowImg.width > 0 && rowImg.height > 0) {
@@ -863,7 +863,6 @@ void drawInterface() {
   popMatrix();
   pushMatrix();
   translate(rightX, botY);
-  rotate(PI / 10);
   triangle(0, 0, -shuffleArrowSize, -shuffleArrowSize/2, -shuffleArrowSize, shuffleArrowSize/2);
   popMatrix();
 
@@ -990,7 +989,10 @@ void mousePressed() {
   //SHUFFLE BUTTON
   if (localMouseX >= ShuffleDivX && localMouseX <= ShuffleDivX + ShuffleDivWidth &&
     localMouseY >= ShuffleDivY && localMouseY <= ShuffleDivY + ShuffleDivHeight) {
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
     currentSong = int(random(numberOfSongs));
+    playList[currentSong].play();
   }
 
   //
